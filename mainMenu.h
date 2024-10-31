@@ -2,6 +2,7 @@
 #define MAINMENU_H
 
 #include <SFML/Graphics.hpp>
+#include <iostream>
 #include "game.h"
 
 enum state {normal, hovered, clicked};
@@ -12,18 +13,26 @@ class MainMenu: public Game
     ~MainMenu();
     void render();
     void handleInput();
-    void update();
 
     private:
     
     Button mStart;
     Button mExit;
     sf::Sprite mBackground;
+    sf::Texture mBackTexture;
     sf::Text mTitle1;
     sf::Text mTitle2;
     sf::Color mTextColor;
+    //Game class has "mIsDone" bool statement, mainmenu has copy
     
 };
+
+
+
+
+
+
+
 
 class Button: public MainMenu
 {

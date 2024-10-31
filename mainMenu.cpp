@@ -7,8 +7,15 @@ INITIALIZE ALL VARIABLES
 
 TODO: INITIALIZE SPRITES
     sf::Sprite mBackground;
-    sf::Sprite mButton;
+    Also buttons
     */
+
+    mBackTexture.loadFromFile("/Sprites/Main_Menu_Idea.png");
+    if(!mBackTexture.loadFromFile("/Sprites/Main_Menu_Idea.png"))
+    {
+        std::cout<< "Cannot open background texture";
+    }
+
 //Set text font
     mTitle1.setFont(mFont);
     mTitle2.setFont(mFont);
@@ -23,7 +30,6 @@ TODO: INITIALIZE SPRITES
     mTextColor = sf::Color::White;
     mTitle1.setColor(mTextColor);
     mTitle2.setColor(mTextColor);
-    
     
 
 }
@@ -40,13 +46,13 @@ void MainMenu::render()
         {
             mWindow.close();
         }
+    
 
-//Button will be drawn twice
-//One for start, one for exit
 /*
-
-When start button is pressed, will end the main menu loop
-When exit button is pressed, exit button
+Render buttons
+Render locations of Text
+Render background image
+Update buttons during the drawing process
 
 */
 
@@ -59,13 +65,21 @@ When exit button is pressed, exit button
 
 void MainMenu::handleInput()
 {
+/*
+Get locations of buttons and check for clicks within the buttons
+for start button click- left click, exit main menu, go to level 1 of game
 
+*/
 }
 
 
+
+/*
+Button class for the main menu goes here
+*/
 Button::Button():Button("Error!",{100,100},{100,100})
 {
-
+//Default constructor. If this button pops up then I did something Very Wrong:tm:
 
 }
 
@@ -79,16 +93,16 @@ Button::Button(std::string s, sf::Vector2f position, sf::Vector2f size)
     sf::Uint32 mBtnState;
     sf::Font mFont;
     */
-/*
-cannot currently set texture
 
-    mTexture.loadFromFile(file,horizontal position,vertical position)
-    if (!mTexture.loadFromFile("button.png"))
+
+    mTexture.loadFromFile("Sprites/button.png");
+    if (!mTexture.loadFromFile("Sprites/button.png"))
     {
+        std::cout<< "Cannot load button texture\n";
         exit(1);
     }
-    mButton.setTexture();
-*/
+    mButton.setTexture(mTexture);
+
 
     sf::Vector2u imageSize=mTexture.getSize();
     mButton.setOrigin(imageSize.x/2, imageSize.y/2);
@@ -143,5 +157,7 @@ if (e.type == sf::Event::MouseButtonPressed)
             }
         }
     }
+
+
 
 }
