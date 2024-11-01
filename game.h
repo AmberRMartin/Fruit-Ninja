@@ -10,21 +10,26 @@ Good luck guys!
 
 #include <SFML/Graphics.hpp>
 
-class Game
+
+//Game class, add as needed, avoid subtracting 
+class Game: public sf::Drawable
 {
     public:
     Game();
     ~Game(){};
-    void render();
+    void draw(sf::RenderTarget& target,sf::RenderStates states) const;
     bool isDone() const;
     void MainMenu();
     void update();
+    bool startmenu;
 
     protected:
-    sf::RenderWindow mWindow;
     bool mIsDone;
     sf::Font mFont;
 };
 
+//Functions for misc stuff go here
+
+void StartMenu(Game &game, sf::RenderWindow &window);
 
 #endif

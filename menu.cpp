@@ -28,5 +28,16 @@ Menu functions
 
 int main()
 {
+    sf::RenderWindow window(sf::VideoMode(1000,1000), "Fruit Ninja!");
+    Game game;
 
+    while(window.isOpen())
+    {
+        while(game.startmenu == false)
+        {
+            StartMenu(game, window);
+        }
+    }
+
+    std::cout<< "Successfully exited mainmenu!\n";
 }

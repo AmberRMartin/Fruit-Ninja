@@ -5,36 +5,50 @@
 #include <iostream>
 #include "game.h"
 
-enum state {normal, hovered, clicked};
+enum state {normal, clicked};
 
 class MainMenu: public Game
 {
+    public: 
+    
     MainMenu();
     ~MainMenu();
-    void render();
-    void handleInput();
-
-    private:
-    
+    virtual void draw(sf::RenderTarget& target,sf::RenderStates states) const;
+    void handleInput(sf::Event& e, sf::RenderWindow& window);
     Button mStart;
     Button mExit;
+
+    private:
     sf::Sprite mBackground;
     sf::Texture mBackTexture;
     sf::Text mTitle1;
     sf::Text mTitle2;
     sf::Color mTextColor;
-    //Game class has "mIsDone" bool statement, mainmenu has copy
+    sf::Vector2f mPosition;
+    //bool mIsDone;
     
 };
 
 
+    // void render();
+    // void draw(sf::RenderTarget& target,sf::RenderStates states) const;
+    // void handleInput();
+
+/*
+Handleinput is for detecting if a button is clicked. All mouse-related
+events go here.
+
+draw is just drawing the buttons and screen
+should be like three lines of item.draw();
+
+Render is...idk what render is for. 
+*/
 
 
 
 
 
-
-class Button: public MainMenu
+class Button: public sf::Drawable
 {
 /*
 Here to handle start and exit buttons
@@ -44,6 +58,7 @@ Including drawing them
     public:
     Button();
     Button(std::string s, sf::Vector2f position, sf::Vector2f size);
+    virtual void draw(sf::RenderTarget& target,sf::RenderStates states) const;
     sf::Vector2f getPosition(){return mPosition;};
     sf::Vector2f getDimensions(){return sf::Vector2f(mButton.getGlobalBounds().width, mButton.getGlobalBounds().height);};
     sf::Uint32 getState(){return mBtnState;};
@@ -54,7 +69,7 @@ Including drawing them
     sf::Sprite mButton;
     sf::Texture mTexture;
     sf::Text mText;
-    sf::Vector2f mPosition;
+    sf::Vector2f mPosition; 
     sf::Uint32 mBtnState;
     sf::Font mFont;
 };

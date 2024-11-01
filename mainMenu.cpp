@@ -1,20 +1,29 @@
+/**
+ * @file mainMenu.cpp
+ * @author Amber Martin
+ * @brief Class definitions for Main Menu and Button
+ * @version 0.1
+ * @date 2024-11-01
+ * 
+ * @copyright Copyright (c) 2024
+ * 
+ */
 #include "mainMenu.h"
 
+
+/**
+ * @brief Construct a new Main Menu:: Main Menu object
+ * 
+ */
 MainMenu::MainMenu()
 {
-/*
-INITIALIZE ALL VARIABLES
-
-TODO: INITIALIZE SPRITES
-    sf::Sprite mBackground;
-    Also buttons
-    */
 
     mBackTexture.loadFromFile("/Sprites/Main_Menu_Idea.png");
     if(!mBackTexture.loadFromFile("/Sprites/Main_Menu_Idea.png"))
     {
         std::cout<< "Cannot open background texture";
     }
+    mBackground.setTexture(mBackTexture);
 
 //Set text font
     mTitle1.setFont(mFont);
@@ -30,71 +39,81 @@ TODO: INITIALIZE SPRITES
     mTextColor = sf::Color::White;
     mTitle1.setColor(mTextColor);
     mTitle2.setColor(mTextColor);
+
+//Position can stay at 0,0 since this takes the entire screen
+//But I'll initialize it anyway
+    mPosition = {0,0};
     
+//Initialize the two buttons
 
-}
+// Button mExit;
+    Button temp1("Start", {621, 523},{375,134});
+    mStart = temp1;
+    Button temp2("Exit", {767, 760},{375,134});
+    mExit = temp2;
 
-
-void MainMenu::render()
-{
-    while(mWindow.isOpen())
-    {
-        sf::Event event;
-
-        //Close if exit button is hit
-        if (event.type == sf::Event::Closed)
-        {
-            mWindow.close();
-        }
+    mIsDone = false;
     
-
-/*
-Render buttons
-Render locations of Text
-Render background image
-Update buttons during the drawing process
-
-*/
-
-
-
-    }
-
 }
 
 
-void MainMenu::handleInput()
+/**
+ * @brief ONLY draws the objects for main menu.
+ * 
+ * @param target 
+ * @param states 
+ */
+void MainMenu::draw(sf::RenderTarget& target,sf::RenderStates states) const
 {
-/*
-Get locations of buttons and check for clicks within the buttons
-for start button click- left click, exit main menu, go to level 1 of game
-
-*/
+    target.draw(mBackground, states);
 }
 
 
 
-/*
-Button class for the main menu goes here
-*/
+/**
+ * @brief Takes the buttons inside main menu, checks for events
+ * 
+ * @param e 
+ * @param window 
+ */
+void MainMenu::handleInput(sf::Event& e, sf::RenderWindow& window)
+{
+    mStart.update(e, window);
+    mExit.update(e, window);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+/**
+ * @brief Default construct a new Button:: Button object
+ * 
+ */
 Button::Button():Button("Error!",{100,100},{100,100})
 {
 //Default constructor. If this button pops up then I did something Very Wrong:tm:
 
 }
 
+/**
+ * @brief Construct a new Button:: Button object
+ * 
+ * @param s Message on button
+ * @param position Position on button
+ * @param size Size of button
+ */
 Button::Button(std::string s, sf::Vector2f position, sf::Vector2f size)
 {
-    /*
-    sf::Sprite mButton;
-    sf::Text mText;
-    sf::Texture mTexture;
-    sf::Vector2f mPosition;
-    sf::Uint32 mBtnState;
-    sf::Font mFont;
-    */
-
-
+//Texture of buttons, custom.
     mTexture.loadFromFile("Sprites/button.png");
     if (!mTexture.loadFromFile("Sprites/button.png"))
     {
@@ -104,16 +123,16 @@ Button::Button(std::string s, sf::Vector2f position, sf::Vector2f size)
     mButton.setTexture(mTexture);
 
 
+
     sf::Vector2u imageSize=mTexture.getSize();
-    mButton.setOrigin(imageSize.x/2, imageSize.y/2);
-//Scale goes here
+
+
     mPosition = position;
     mButton.setPosition(mPosition.x,mPosition.y);
 
-
     mFont.loadFromFile("Minecraftia-Regular.ttf");
     if (!mFont.loadFromFile("Minecraftia-Regular.ttf"))
-    {
+    { 
         exit(2);
     }
 
@@ -129,6 +148,16 @@ Button::Button(std::string s, sf::Vector2f position, sf::Vector2f size)
     mBtnState = normal;
 }
 
+
+
+
+
+/**
+ * @brief Checks for whether or not a button has been clicked
+ * 
+ * @param e Event, usually button click
+ * @param window Window everything is being displayed on
+ */
 void Button::update(sf::Event& e, sf::RenderWindow& window)
 {
    
@@ -145,11 +174,11 @@ if (e.type == sf::Event::MouseButtonPressed)
         {
             if(mText.getString() == "Start")
             {
-                //Do something to go to game.
+                //Unsure what I need to do here tbh, but exit mainmenu
             }
             else if (mText.getString() == "Exit")
             {
-                //Close game
+                window.close();
             }
             else
             {
@@ -157,7 +186,16 @@ if (e.type == sf::Event::MouseButtonPressed)
             }
         }
     }
+}
 
 
-
+/**
+ * @brief Draw function for buttons
+ * 
+ * @param target 
+ * @param states 
+ */
+void Button::draw(sf::RenderTarget& target,sf::RenderStates states) const
+{
+    target.draw(mButton, states);
 }
