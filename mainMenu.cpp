@@ -65,10 +65,10 @@ MainMenu::MainMenu(sf::Vector2f position, sf::Vector2f size)
     BUTTONS GO HERE
 */
 //Button(std::string s, sf::Vector2f position, sf::Vector2f size);
-    Button temp1("Start", {(mPosition.x+50),mPosition.y}, {162,67});
-    Button temp2("Exit", {(mPosition.x+50), mPosition.y+70}, {162,67});
-    mStart = temp1;
-    mExit = temp2;
+    // Button temp1("Start", {(mPosition.x+30),mPosition.y}, {152,57});
+    // Button temp2("Exit", {(mPosition.x+30), mPosition.y+90}, {152,57});
+    // mStart = temp1;
+    // mExit = temp2;
 
 }
 
@@ -96,35 +96,8 @@ void MainMenu::draw(sf::RenderTarget& target,sf::RenderStates states) const
  */
 void MainMenu::handleInput(sf::Event& e, sf::RenderWindow& window)
 {
-    mStart.update(e, window);
-    mExit.update(e, window);
-}
-
-
-void MainMenu::resize(sf::RenderWindow &window)
-{
-/*
-    Change the scale so it always matches on the inside of the window
-*/
-    // window.getSize().x;
-    // window.getSize().y;
-
-/*
-ALways fix position to center of the screen
-origin fixed to center of image
-*/ 
-
-//Set position to center of the screen
-//Set scale to always be in middle of screen regardless of size
-    if(window.getSize().y < window.getSize().x) //Height of screen is smaller
-    {
-//Reset drawing size
-        mBackground.setScale((mBackTexture.getSize().x/window.getSize().y), (mBackTexture.getSize().y/window.getSize().y));
-    }
-    else //Width of screen is smaller
-    {
-        mBackground.setScale((mBackTexture.getSize().x/window.getSize().x), (mBackTexture.getSize().y/window.getSize().x));
-    }
+    // mStart.update(e, window);
+    // mExit.update(e, window);
 }
 
 

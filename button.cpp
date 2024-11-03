@@ -32,6 +32,7 @@ Button::Button(std::string s, sf::Vector2f position, sf::Vector2f size)
 
 
     sf::Vector2u imageSize=mTexture.getSize();
+    mButton.setOrigin(imageSize.x/2, imageSize.y/2);
     mButton.setScale(size.x/(mTexture.getSize().x), size.y/(mTexture.getSize().y));
 
     mPosition = position;
@@ -50,7 +51,7 @@ Button::Button(std::string s, sf::Vector2f position, sf::Vector2f size)
 
 
     mText.setOrigin(mText.getGlobalBounds().width/2, mText.getGlobalBounds().height/2);
-    mText.setPosition(mPosition.x, mPosition.y-fontSize/4);
+    mText.setPosition(mPosition.x, mPosition.y+10);
 
     mText.setFillColor(sf::Color::Black);
 

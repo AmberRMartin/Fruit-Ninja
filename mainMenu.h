@@ -14,9 +14,8 @@ class MainMenu: public sf::Drawable
    // ~MainMenu();
     virtual void draw(sf::RenderTarget& target,sf::RenderStates states) const;
     void handleInput(sf::Event& e, sf::RenderWindow& window);
-    void resize(sf::RenderWindow &window);
-    Button mStart;
-    Button mExit;
+    // Button mStart;
+    // Button mExit;
 
     private:
     sf::Sprite mBackground;
