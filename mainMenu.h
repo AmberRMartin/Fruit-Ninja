@@ -10,9 +10,11 @@ class MainMenu: public sf::Drawable
 {
     public: 
     MainMenu();
-    ~MainMenu();
+    MainMenu(sf::Vector2f position, sf::Vector2f size);
+   // ~MainMenu();
     virtual void draw(sf::RenderTarget& target,sf::RenderStates states) const;
     void handleInput(sf::Event& e, sf::RenderWindow& window);
+    void resize(sf::RenderWindow &window);
     Button mStart;
     Button mExit;
 

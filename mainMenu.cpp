@@ -15,9 +15,13 @@
  * @brief Construct a new Main Menu:: Main Menu object
  * 
  */
-MainMenu::MainMenu()
+MainMenu::MainMenu():MainMenu({0,0}, {0,0})
 {
+//Default, should not activate
+}
 
+MainMenu::MainMenu(sf::Vector2f position, sf::Vector2f size)
+{
     mBackTexture.loadFromFile("Sprites/Main_Menu_Idea.png");
     if(!mBackTexture.loadFromFile("Sprites/Main_Menu_Idea.png"))
     {
@@ -25,49 +29,49 @@ MainMenu::MainMenu()
     }
     mBackground.setTexture(mBackTexture);
 
-//Set text font
+    sf::Vector2u imageSize= mBackTexture.getSize();
+    mBackground.setOrigin(imageSize.x/2, imageSize.y/2); //For centering
+    mBackground.setScale(size.x/(mBackTexture.getSize().x),size.y/(mBackTexture.getSize().y));
+
+    mPosition = position;
+    mBackground.setPosition(mPosition.x, mPosition.y);
 
     mFont.loadFromFile("Minecraftia-Regular.ttf");
     if(!mFont.loadFromFile("Minecraftia-Regular.ttf"))
     {
-        std::cout<< "Cannot load font, main menu\n";
+        std::cout<< "Issue loading font, main menu\n";
         exit(1);
     }
+
     mTitle1.setFont(mFont);
     mTitle2.setFont(mFont);
-    
-
-//Set text words
+//Not actually sure what size to make the titles yet so lets go 1/5 size
+    unsigned int fontSize = mBackground.getGlobalBounds().height/5;
+    mTitle1.setCharacterSize(fontSize);
+    mTitle2.setCharacterSize(fontSize);
     mTitle1.setString("Fruit");
     mTitle2.setString("Ninja!");
-    
+    mTitle1.setScale(200/size.x, 200/size.y);
+    mTitle2.setScale(200/size.x, 200/size.y);
+//insert title positions here
+    mTitle1.setPosition(mPosition.x, mPosition.y-130);
+    mTitle2.setPosition(mPosition.x+60, mPosition.y-80);
 
-//set colors
     mTextColor = sf::Color::White;
-    mTitle1.setOutlineColor(mTextColor);
-    mTitle2.setOutlineColor(mTextColor);
-    
+    mTitle1.setFillColor(mTextColor);
+    mTitle2.setFillColor(mTextColor);
 
-//Position can stay at 0,0 since this takes the entire screen
-//But I'll initialize it anyway
-    mPosition = {0,0};
-    
-//Initialize the two buttons
-
-// Button mExit;
-    // Button temp1("Start", {621, 523},{375,134});
-    // mStart = temp1;
-    // Button temp2("Exit", {767, 760},{375,134});
-    // mExit = temp2;
-
-   // mIsDone = false;
-    
-}
-
-MainMenu::~MainMenu()
-{
+/*
+    BUTTONS GO HERE
+*/
+//Button(std::string s, sf::Vector2f position, sf::Vector2f size);
+    Button temp1("Start", {(mPosition.x+50),mPosition.y}, {162,67});
+    Button temp2("Exit", {(mPosition.x+50), mPosition.y+70}, {162,67});
+    mStart = temp1;
+    mExit = temp2;
 
 }
+
 
 /**
  * @brief ONLY draws the objects for main menu.
@@ -78,6 +82,8 @@ MainMenu::~MainMenu()
 void MainMenu::draw(sf::RenderTarget& target,sf::RenderStates states) const
 {
     target.draw(mBackground, states);
+    target.draw(mTitle1, states);
+    target.draw(mTitle2, states);
 }
 
 
@@ -95,5 +101,30 @@ void MainMenu::handleInput(sf::Event& e, sf::RenderWindow& window)
 }
 
 
+void MainMenu::resize(sf::RenderWindow &window)
+{
+/*
+    Change the scale so it always matches on the inside of the window
+*/
+    // window.getSize().x;
+    // window.getSize().y;
+
+/*
+ALways fix position to center of the screen
+origin fixed to center of image
+*/ 
+
+//Set position to center of the screen
+//Set scale to always be in middle of screen regardless of size
+    if(window.getSize().y < window.getSize().x) //Height of screen is smaller
+    {
+//Reset drawing size
+        mBackground.setScale((mBackTexture.getSize().x/window.getSize().y), (mBackTexture.getSize().y/window.getSize().y));
+    }
+    else //Width of screen is smaller
+    {
+        mBackground.setScale((mBackTexture.getSize().x/window.getSize().x), (mBackTexture.getSize().y/window.getSize().x));
+    }
+}
 
 

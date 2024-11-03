@@ -16,41 +16,35 @@ Game::Game()
     startmenu = false;
 }
 
-Game::~Game()
-{
-
-}
 
 void Game::draw(sf::RenderTarget& target,sf::RenderStates states) const
 {
 
 }
 
+
+
 //Misc. Functions
 
-void StartMenu(Game &game, MainMenu &menu,sf::RenderWindow &window)
-{
+// void StartMenu(Game &game, MainMenu &menu,sf::RenderWindow &window)
+// {
 
+// //Events go here
+//     sf::Event event; 
 
-    sf::Event event;
-    if(event.type == sf::Event::Closed)
-    {
-        window.close();
-    }
+//     menu.handleInput(event, window);
 
-//Events go here
-    menu.handleInput(event, window);
+// //Actual draw stuff
+//     window.clear();
+//     menu.resize(window);
+//     window.draw(menu);
+// //     window.draw(menu.mStart); Segmentation faults for unknown reasons
+// //     window.draw(menu.mExit);
+//     window.display();
 
-//Actual draw stuff
-    window.clear();
-    window.draw(menu);
-    // window.draw(menu.mStart);
-    // window.draw(menu.mExit);
-    window.display();
+// //ONLY when start button is hit, change game mainmenu to true
 
-//ONLY when start button is hit, change game mainmenu to true
-
-}
+// }
    
 
     

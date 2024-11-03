@@ -32,7 +32,7 @@ Button::Button(std::string s, sf::Vector2f position, sf::Vector2f size)
 
 
     sf::Vector2u imageSize=mTexture.getSize();
-
+    mButton.setScale(size.x/(mTexture.getSize().x), size.y/(mTexture.getSize().y));
 
     mPosition = position;
     mButton.setPosition(mPosition.x,mPosition.y);
@@ -51,6 +51,8 @@ Button::Button(std::string s, sf::Vector2f position, sf::Vector2f size)
 
     mText.setOrigin(mText.getGlobalBounds().width/2, mText.getGlobalBounds().height/2);
     mText.setPosition(mPosition.x, mPosition.y-fontSize/4);
+
+    mText.setFillColor(sf::Color::Black);
 
     mBtnState = normal;
 }
@@ -81,15 +83,11 @@ if (e.type == sf::Event::MouseButtonPressed)
         {
             if(mText.getString() == "Start")
             {
-                //Unsure what I need to do here tbh, but exit mainmenu
+                std::cout<< "Start button clicked!\n";
             }
             else if (mText.getString() == "Exit")
             {
-                window.close();
-            }
-            else
-            {
-                //Exception
+                std::cout<< "Exit button clicked!\n";
             }
         }
     }
@@ -105,4 +103,5 @@ if (e.type == sf::Event::MouseButtonPressed)
 void Button::draw(sf::RenderTarget& target,sf::RenderStates states) const
 {
     target.draw(mButton, states);
+    target.draw(mText, states);
 }

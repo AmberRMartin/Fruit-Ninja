@@ -18,10 +18,9 @@ class Game: public sf::Drawable
 {
     public:
     Game();
-    ~Game();
+  //  ~Game();
     void draw(sf::RenderTarget& target,sf::RenderStates states) const;
     bool isDone() const;
-    void MainMenu();
     void update();
     bool startmenu;
 
@@ -32,6 +31,6 @@ class Game: public sf::Drawable
 
 //Functions for misc stuff go here
 
-void StartMenu(Game &game, MainMenu &menu, sf::RenderWindow &window);
+//void StartMenu(Game &game, MainMenu &menu, sf::RenderWindow &window);
 
 #endif

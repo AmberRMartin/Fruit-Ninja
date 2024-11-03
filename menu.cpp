@@ -28,17 +28,52 @@ Menu functions
 
 int main()
 {
-    sf::RenderWindow window(sf::VideoMode(1000,1000), "Fruit Ninja!");
+    sf::RenderWindow window(sf::VideoMode(500,500), "Fruit Ninja!");
     Game game;
-    MainMenu menu1;
+   MainMenu menu1({250, 250},{500,500}); //Position, size
+
 
     while(window.isOpen())
     {
-        while(game.startmenu == false)
+        sf::Event event;
+        while(window.pollEvent(event))
         {
-            StartMenu(game, menu1, window);
+            if(event.type == sf::Event::Closed)
+            {
+                window.close();
+            }
+
+            if(game.startmenu == false) //Do not do a while loop here. You WILL get trapped
+            {
+                window.clear();
+             //   menu1.resize(window);
+                window.draw(menu1);
+                // window.draw(menu1.mStart);
+                // window.draw(menu1.mExit);
+            }
+
         }
+        window.display();
     }
+
+/*
+
+//Events go here
+    sf::Event event; 
+
+    menu.handleInput(event, window);
+
+//Actual draw stuff
+    window.clear();
+    menu.resize(window);
+    window.draw(menu);
+//     window.draw(menu.mStart); Segmentation faults for unknown reasons
+//     window.draw(menu.mExit);
+    window.display();
+
+//ONLY when start button is hit, change game mainmenu to true
+
+}*/
 
     std::cout<< "Successfully exited main menu!\n";
 }
