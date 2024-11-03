@@ -1,5 +1,6 @@
 #include "game.h"
 #include "mainMenu.h"
+#include "button.h"
 
 
 //Game class
@@ -15,13 +16,21 @@ Game::Game()
     startmenu = false;
 }
 
+Game::~Game()
+{
+
+}
+
+void Game::draw(sf::RenderTarget& target,sf::RenderStates states) const
+{
+
+}
 
 //Misc. Functions
 
-void StartMenu(Game &game, sf::RenderWindow &window)
+void StartMenu(Game &game, MainMenu &menu,sf::RenderWindow &window)
 {
 
-    MainMenu menu;
 
     sf::Event event;
     if(event.type == sf::Event::Closed)
@@ -35,8 +44,8 @@ void StartMenu(Game &game, sf::RenderWindow &window)
 //Actual draw stuff
     window.clear();
     window.draw(menu);
-    window.draw(menu.mStart);
-    window.draw(menu.mExit);
+    // window.draw(menu.mStart);
+    // window.draw(menu.mExit);
     window.display();
 
 //ONLY when start button is hit, change game mainmenu to true

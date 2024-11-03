@@ -2,7 +2,7 @@
 Use this as a peusdo main
 branch: MainMenu
 
-compile command: g++ -std=c++11 menu.cpp -o sfml-app -lsfml-graphics -lsfml-window -lsfml-system
+compile command: g++ -std=c++11 menu.cpp button.cpp game.cpp mainMenu.cpp -o sfml-app -lsfml-graphics -lsfml-window -lsfml-system
 
 
 
@@ -30,14 +30,15 @@ int main()
 {
     sf::RenderWindow window(sf::VideoMode(1000,1000), "Fruit Ninja!");
     Game game;
+    MainMenu menu1;
 
     while(window.isOpen())
     {
         while(game.startmenu == false)
         {
-            StartMenu(game, window);
+            StartMenu(game, menu1, window);
         }
     }
 
-    std::cout<< "Successfully exited mainmenu!\n";
+    std::cout<< "Successfully exited main menu!\n";
 }

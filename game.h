@@ -9,6 +9,8 @@ Good luck guys!
 #define GAME_H
 
 #include <SFML/Graphics.hpp>
+#include "mainMenu.h"
+#include "button.h"
 
 
 //Game class, add as needed, avoid subtracting 
@@ -16,7 +18,7 @@ class Game: public sf::Drawable
 {
     public:
     Game();
-    ~Game(){};
+    ~Game();
     void draw(sf::RenderTarget& target,sf::RenderStates states) const;
     bool isDone() const;
     void MainMenu();
@@ -30,6 +32,6 @@ class Game: public sf::Drawable
 
 //Functions for misc stuff go here
 
-void StartMenu(Game &game, sf::RenderWindow &window);
+void StartMenu(Game &game, MainMenu &menu, sf::RenderWindow &window);
 
 #endif
