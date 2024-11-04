@@ -20,7 +20,7 @@ Including drawing them
     sf::Vector2f getPosition(){return mPosition;};
     sf::Vector2f getDimensions(){return sf::Vector2f(mButton.getGlobalBounds().width, mButton.getGlobalBounds().height);};
     sf::Uint32 getState(){return mBtnState;};
-    void update(sf::Event& e, sf::RenderWindow& window);
+    bool clicked(sf::Event& e, sf::RenderWindow& window);
 
 
     private:

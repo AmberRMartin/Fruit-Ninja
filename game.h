@@ -31,6 +31,5 @@ class Game: public sf::Drawable
 
 //Functions for misc stuff go here
 
-//void StartMenu(Game &game, MainMenu &menu, sf::RenderWindow &window);
 
 #endif

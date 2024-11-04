@@ -68,7 +68,7 @@ Button::Button(std::string s, sf::Vector2f position, sf::Vector2f size)
  * @param e Event, usually button click
  * @param window Window everything is being displayed on
  */
-void Button::update(sf::Event& e, sf::RenderWindow& window)
+bool Button::clicked(sf::Event& e, sf::RenderWindow& window)
 {
    
     sf::Vector2i mPos = sf::Mouse::getPosition(window);
@@ -82,16 +82,10 @@ if (e.type == sf::Event::MouseButtonPressed)
     {
         if(mouseInButton)
         {
-            if(mText.getString() == "Start")
-            {
-                std::cout<< "Start button clicked!\n";
-            }
-            else if (mText.getString() == "Exit")
-            {
-                std::cout<< "Exit button clicked!\n";
-            }
+            return true;
         }
     }
+    return false;
 }
 
 
