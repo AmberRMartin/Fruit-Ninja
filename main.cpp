@@ -1,7 +1,7 @@
 /**
  * @file main.cpp
  * @author Amber Martin, Nicholas Cicala, Matthew Barber
- * @brief 
+ * @brief Create and play a small turn-based rpg called Fruit Ninja
  * @version 0.1
  * @date 2024-11-03
  * 
@@ -35,6 +35,7 @@ int main()
             }
 
             window.clear();
+
 //Main menu
             if(game.startmenu == false) //Do not do a while loop here. You WILL get trapped
             {

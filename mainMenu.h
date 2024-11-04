@@ -1,3 +1,13 @@
+/**
+ * @file mainMenu.h
+ * @author Amber Martin
+ * @brief Creates and draws main menu, minus the buttons for it
+ * @version 0.1
+ * @date 2024-11-03
+ * 
+ * @copyright Copyright (c) 2024
+ * 
+ */
 #ifndef MAINMENU_H
 #define MAINMENU_H
 
@@ -11,11 +21,7 @@ class MainMenu: public sf::Drawable
     public: 
     MainMenu();
     MainMenu(sf::Vector2f position, sf::Vector2f size);
-   // ~MainMenu();
     virtual void draw(sf::RenderTarget& target,sf::RenderStates states) const;
-    void handleInput(sf::Event& e, sf::RenderWindow& window);
-    // Button mStart;
-    // Button mExit;
 
     private:
     sf::Sprite mBackground;
@@ -25,7 +31,6 @@ class MainMenu: public sf::Drawable
     sf::Color mTextColor;
     sf::Vector2f mPosition;
     sf::Font mFont;
-    //bool mIsDone;
     
 };
 

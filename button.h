@@ -1,3 +1,13 @@
+/**
+ * @file button.h
+ * @author Amber Martin
+ * @brief The button class for reusing across as many menus as needed
+ * @version 0.1
+ * @date 2024-11-03
+ * 
+ * @copyright Copyright (c) 2024
+ * 
+ */
 #ifndef BUTTON_H
 #define BUTTON_H
 
@@ -8,10 +18,6 @@ enum state {normal, clicked};
 
 class Button: public sf::Drawable
 {
-/*
-Here to handle start and exit buttons
-Including drawing them 
-*/
 
     public:
     Button();
@@ -21,7 +27,6 @@ Including drawing them
     sf::Vector2f getDimensions(){return sf::Vector2f(mButton.getGlobalBounds().width, mButton.getGlobalBounds().height);};
     sf::Uint32 getState(){return mBtnState;};
     bool clicked(sf::Event& e, sf::RenderWindow& window);
-
 
     private:
     sf::Sprite mButton;
