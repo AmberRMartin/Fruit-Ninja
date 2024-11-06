@@ -20,8 +20,11 @@
 
 int main()
 {
-    sf::RenderWindow window(sf::VideoMode(500,500), "Fruit Ninja!");
+    sf::RenderWindow window(sf::VideoMode(900,500), "Fruit Ninja!");
     Game game;
+    MainMenu mainMenu({450, 250},{500,500}); //Position, size
+    Button mStart("Start", {550,250}, {154,55});
+    Button mExit("Exit", {550, 340}, {154,55});
 
 
     while(window.isOpen())
@@ -39,10 +42,6 @@ int main()
 //Main menu
             if(game.startmenu == false) //Do not do a while loop here. You WILL get trapped
             {
-                MainMenu mainMenu({250, 250},{500,500}); //Position, size
-                Button mStart("Start", {350,250}, {154,55});
-                Button mExit("Exit", {350, 340}, {154,55});
-
 
                 window.draw(mainMenu);
                 window.draw(mStart);
