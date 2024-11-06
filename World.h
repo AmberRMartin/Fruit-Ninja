@@ -14,9 +14,10 @@ using namespace std;
 class World {
     public:
         virtual void draw(sf::RenderTarget& target,sf::RenderStates states) const;
-    private:
+    protected:
         sf::Sprite mObject;
         sf::Texture mTexture;
+        sf::Text mText;
         sf::Font mFont;
         sf::Vector2f mPos;
         sf::Uint32 mRendState;
