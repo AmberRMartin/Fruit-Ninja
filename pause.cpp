@@ -13,13 +13,8 @@
 Pause::Pause()
 {
     isPaused = false; 
-/*
-MainMenu mainMenu({450, 250},{500,500}); //Position, size
-Button mStart("Start", {550,250}, {154,55});
-*/
-//Button(std::string s, sf::Vector2f position, sf::Vector2f size); constructor
 
-    Button temp1{"Pause", {500,30},{77,27}};
+    Button temp1{"Pause", {650,30},{77,27}};
     Button temp2{"Resume", {450,220},{154,55}};
     Button temp3{"Exit", {450,320}, {154,55}};
 
@@ -27,7 +22,7 @@ Button mStart("Start", {550,250}, {154,55});
     mResume = temp2;
     mExit = temp3;
 //It heavily dislikes copying buttons, so fix files and text
-//Which I added a whole new function for and I'm praying it works
+
     mPause.fixFiles();
     mResume.fixFiles();
     mExit.fixFiles();

@@ -1,6 +1,7 @@
 test.cpp
 menu.cpp
-
+inventory.cpp
+inventory.Headers
 # Prerequisites
 *.d
 

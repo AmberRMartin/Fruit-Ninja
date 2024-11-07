@@ -72,6 +72,14 @@ MainMenu::MainMenu(sf::Vector2f position, sf::Vector2f size)
     mTitle1.setFillColor(mTextColor);
     mTitle2.setFillColor(mTextColor);
 
+    Button temp1("Start", {550,250}, {154,55});
+    Button temp2("Exit", {550, 340}, {154,55});
+
+    mStart = temp1;
+    mExit = temp2;
+    mStart.fixFiles();
+    mExit.fixFiles();
+
 }
 
 
@@ -87,6 +95,3 @@ void MainMenu::draw(sf::RenderTarget& target,sf::RenderStates states) const
     target.draw(mTitle1, states);
     target.draw(mTitle2, states);
 }
-
-
-

@@ -24,6 +24,7 @@ Game::Game()
         exit(1);
     }
     startmenu = false;
+    
 }
 
 
