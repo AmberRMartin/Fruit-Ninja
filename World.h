@@ -13,7 +13,7 @@ using namespace std;
 
 class World {
     public:
-        virtual void draw(sf::RenderTarget& target,sf::RenderStates states) const;
+        virtual void draw(sf::RenderTarget& target) const;
     protected:
         sf::Sprite mObject;
         sf::Texture mTexture;

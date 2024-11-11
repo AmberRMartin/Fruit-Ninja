@@ -5,7 +5,7 @@
  * @date 2024-11-05
  */
  #include "World.h"
-void World::draw(sf::RenderTarget& target,sf::RenderStates states) const{
-   target.draw(mObject,states);
-   target.draw(mText,states);
+void World::draw(sf::RenderTarget& target) const{
+   target.draw(mObject);
+   target.draw(mText);
  }
