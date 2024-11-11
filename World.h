@@ -21,6 +21,6 @@ class World {
         sf::Font mFont;
         sf::Vector2f mPos;
         sf::Uint32 mRendState;
-}
+};
 
 #endif

@@ -18,16 +18,16 @@
  * @param textF the file passed by reference of the text file
  * @param textureF the file passed by reference of the texture file
  */
-Entity::Entity(int rectCord, int Wid, int Len, int arrayPos[], sf::Vector2f pos
-                bool Player, int cLevel,ifstream& textF,ifstream& textureF){
-    if (!mTexture.loadFromFile(textureF))
+Entity::Entity(nt rectL,int rectT int Wid, int Len, int arrayPos[], sf::Vector2f pos
+           bool Player, int cLevel){
+    if (!mTexture.loadFromFile(""))
     {
         std::cout<<"Error opening file\n";
         exit(1);
     }
     mIsPlayer = Player;
     mObject.setTexture(mTexture);
-    mObject.setTextureRect(sf::IntRect(rectCord, rectCord, Wid, Len));
+    mObject.setTextureRect(sf::IntRect(rectCordL, rectT, Wid, Len));
     sf::Vector2u imageSize=mTexture.getSize();
     mObject.setOrigin(imageSize.x/2, imageSize.y/2);
     mObject.setScale(size.x/mTexture.getSize().x,size.y/mTexture.getSize().y);
@@ -35,7 +35,7 @@ Entity::Entity(int rectCord, int Wid, int Len, int arrayPos[], sf::Vector2f pos
     mPos = pos;
     mArrayPos[0] = arrayPos[0];
     mArrayPos[1] = arrayPos[1];
-    if (!mFont.loadFromFile(textF))
+    if (!mFont.loadFromFile())
     {
         std::cout<<"Error opening file\n";
         exit(1);
