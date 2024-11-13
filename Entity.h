@@ -14,7 +14,7 @@ using namespace std;
 
 class Entity :World {
     public:
-    Entity(int rectL,int rectT int Wid, int Len, int arrayPos[], sf::Vector2f pos,
+    Entity(int rectL,int rectT, int Wid, int Len, int arrayPos[], sf::Vector2f pos,
            bool Player, int cLevel);
     virtual void draw();
 

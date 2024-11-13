@@ -4,7 +4,7 @@
  * @brief definitions for Entity Class functions 
  * @date 2024-11-06
  */
-#include "World.h"
+#include "Entity.h"
 /**
  * @brief Construct a new Entity:: Entity object
  * 
@@ -18,7 +18,7 @@
  * @param textF the file passed by reference of the text file
  * @param textureF the file passed by reference of the texture file
  */
-Entity::Entity(nt rectL,int rectT int Wid, int Len, int arrayPos[], sf::Vector2f pos,
+Entity::Entity(int rectL,int rectT, int Wid, int Len, int arrayPos[], sf::Vector2f pos,
            bool Player, int cLevel){
     if (!mTexture.loadFromFile("")) //include file name
     {
@@ -30,7 +30,7 @@ Entity::Entity(nt rectL,int rectT int Wid, int Len, int arrayPos[], sf::Vector2f
     mObject.setTextureRect(sf::IntRect(rectL, rectT, Wid, Len));
     sf::Vector2u imageSize=mTexture.getSize();
     mObject.setOrigin(imageSize.x/2, imageSize.y/2);
-    mObject.setScale(size.x/mTexture.getSize().x,size.y/mTexture.getSize().y);
+    mObject.setScale(imageSize.x/mTexture.getSize().x,imageSize.y/mTexture.getSize().y);
     mObject.setPosition(pos.x,pos.y);
     mPos = pos;
     mArrayPos[0] = arrayPos[0];
