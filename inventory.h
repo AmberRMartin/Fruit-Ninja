@@ -1,7 +1,9 @@
 #ifndef INVENTORY_H
 #define INVENTORY_H
 
-class Inventory
+#include <SFML/Graphics.hpp>
+#include <stats.h>
+class Inventory: public sf::Drawable, public Stats
 {
     public:
 
