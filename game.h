@@ -18,25 +18,30 @@ Good luck guys!
 #ifndef GAME_H
 #define GAME_H
 
-#include <SFML/Graphics.hpp>
+
 #include "mainMenu.h"
 #include "button.h"
 #include "pause.h"
 #include "inventory.h"
+#include "stats.h"
 
 
 //Game class, add as needed, avoid subtracting 
-class Game: public sf::Drawable
+class Game
 {
     public:
     Game();
-    void draw(sf::RenderTarget& target,sf::RenderStates states) const;
+
     bool isDone() const;
     void update();
+    void GlevelUp();
+
+//Variables
     bool startmenu;
-    MainMenu mainMenu;//({450, 250},{500,500}); //Position, size
+    MainMenu mainMenu;
     Pause pauseMenu;
-    Inventory inventoryMenu;//({450,250}, {400,400});
+    Inventory inventoryMenu;
+    Stats stats;
 
     protected:
     bool mIsDone;

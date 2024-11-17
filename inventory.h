@@ -14,15 +14,17 @@ class Inventory: public sf::Drawable, public Stats
 
         bool isOpen;
 
+//These are public because they'll change over course of the game
+        sf::Text LV;
+        sf::Text HP;
+        sf::Text ATK;
+
     private:
         Button Open;
         Button Close;
         sf::Sprite Menu;
         sf::Texture menuTexture;
         sf::Vector2f mPosition; 
-        sf::Text LV;
-        sf::Text HP;
-        sf::Text ATK;
         sf::Text Sword;
         sf::Text HeadTie;
         sf::Font mFont;
