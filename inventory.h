@@ -24,7 +24,7 @@ class Inventory: public sf::Drawable, public Stats
         sf::Text ATK;
         sf::Text Sword;
         sf::Text Bandana;
-
+        sf::Font mFont;
 };
 
 #endif
