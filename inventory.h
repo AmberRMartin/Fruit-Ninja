@@ -8,6 +8,7 @@ class Inventory: public sf::Drawable, public Stats
 {
     public:
         Inventory();
+        Inventory(sf::Vector2f position, sf::Vector2f size);
         virtual void draw(sf::RenderTarget& target,sf::RenderStates states) const;
         void update(sf::Event& e, sf::RenderWindow& window);
         bool isOpen;
@@ -16,6 +17,8 @@ class Inventory: public sf::Drawable, public Stats
         Button Open;
         Button Close;
         sf::Sprite Menu;
+        sf::Texture menuTexture;
+        sf::Vector2f mPosition; 
         sf::Text LV;
         sf::Text HP;
         sf::Text ATK;
