@@ -2,14 +2,25 @@
 #define INVENTORY_H
 
 #include <SFML/Graphics.hpp>
-#include <stats.h>
+#include "stats.h"
+#include "button.h"
 class Inventory: public sf::Drawable, public Stats
 {
     public:
-
+        Inventory();
+        virtual void draw(sf::RenderTarget& target,sf::RenderStates states) const;
+        void update(sf::Event& e, sf::RenderWindow& window);
+        bool isOpen;
 
     private:
-
+        Button Open;
+        Button Close;
+        sf::Sprite Menu;
+        sf::Text LV;
+        sf::Text HP;
+        sf::Text ATK;
+        sf::Text Sword;
+        sf::Text Bandana;
 
 };
 

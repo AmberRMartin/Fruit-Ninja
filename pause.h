@@ -12,6 +12,7 @@ class Pause: public sf::Drawable//, public Button
     bool isPaused;
     void update(sf::Event& e, sf::RenderWindow& window);
 
+    private:
     Button mPause;
     Button mResume;
     Button mExit;
