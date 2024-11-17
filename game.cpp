@@ -24,13 +24,19 @@ Game::Game()
         exit(1);
     }
     startmenu = false;
-    
+
+    // MainMenu temp1({450, 250},{500,500}); //Position, size
+    // mainMenu = temp1;
+    // mainMenu.fixFiles();
+
+    // Inventory temp2({450,250}, {400,400});
+    // inventoryMenu = temp2;
+
 }
 
 
 void Game::draw(sf::RenderTarget& target,sf::RenderStates states) const
 {
-
 }
 
 

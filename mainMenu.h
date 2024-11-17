@@ -22,6 +22,7 @@ class MainMenu: public sf::Drawable
     MainMenu();
     MainMenu(sf::Vector2f position, sf::Vector2f size);
     virtual void draw(sf::RenderTarget& target,sf::RenderStates states) const;
+    void fixFiles();
     Button mStart;
     Button mExit;
 

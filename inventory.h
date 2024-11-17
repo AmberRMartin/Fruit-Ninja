@@ -11,6 +11,7 @@ class Inventory: public sf::Drawable, public Stats
         Inventory(sf::Vector2f position, sf::Vector2f size);
         virtual void draw(sf::RenderTarget& target,sf::RenderStates states) const;
         void update(sf::Event& e, sf::RenderWindow& window);
+
         bool isOpen;
 
     private:
@@ -23,7 +24,7 @@ class Inventory: public sf::Drawable, public Stats
         sf::Text HP;
         sf::Text ATK;
         sf::Text Sword;
-        sf::Text Bandana;
+        sf::Text HeadTie;
         sf::Font mFont;
 };
 

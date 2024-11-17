@@ -15,7 +15,7 @@
  * @brief Construct a new Main Menu:: Main Menu object
  * 
  */
-MainMenu::MainMenu():MainMenu({0,0}, {0,0})
+MainMenu::MainMenu():MainMenu({450, 250},{500,500})
 {
 //Default, should not activate
 //Could I have just had this as the only constructor? Yes! But the other way is easier for adjusting from main
@@ -33,6 +33,7 @@ MainMenu::MainMenu(sf::Vector2f position, sf::Vector2f size)
     if(!mBackTexture.loadFromFile("Sprites/Main_Menu_Idea.png"))
     {
         std::cout<< "Cannot open background texture";
+        exit(1);
     }
     mBackground.setTexture(mBackTexture);
 
@@ -94,4 +95,28 @@ void MainMenu::draw(sf::RenderTarget& target,sf::RenderStates states) const
     target.draw(mBackground, states);
     target.draw(mTitle1, states);
     target.draw(mTitle2, states);
+}
+
+void MainMenu::fixFiles()
+{
+    mBackTexture.loadFromFile("Sprites/Main_Menu_Idea.png");
+    if(!mBackTexture.loadFromFile("Sprites/Main_Menu_Idea.png"))
+    {
+        std::cout<< "Cannot open background texture";
+        exit(1);
+    }
+    mBackground.setTexture(mBackTexture);
+
+    mFont.loadFromFile("Minecraftia-Regular.ttf");
+    if(!mFont.loadFromFile("Minecraftia-Regular.ttf"))
+    {
+        std::cout<< "Issue loading font, main menu\n";
+        exit(1);
+    }
+
+    mTitle1.setFont(mFont);
+    mTitle2.setFont(mFont);
+
+    mStart.fixFiles();
+    mExit.fixFiles();
 }

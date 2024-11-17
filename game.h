@@ -21,6 +21,8 @@ Good luck guys!
 #include <SFML/Graphics.hpp>
 #include "mainMenu.h"
 #include "button.h"
+#include "pause.h"
+#include "inventory.h"
 
 
 //Game class, add as needed, avoid subtracting 
@@ -28,11 +30,13 @@ class Game: public sf::Drawable
 {
     public:
     Game();
-  //  ~Game();
     void draw(sf::RenderTarget& target,sf::RenderStates states) const;
     bool isDone() const;
     void update();
     bool startmenu;
+    MainMenu mainMenu;//({450, 250},{500,500}); //Position, size
+    Pause pauseMenu;
+    Inventory inventoryMenu;//({450,250}, {400,400});
 
     protected:
     bool mIsDone;
