@@ -8,18 +8,16 @@
 #define WORLD_H
 #include <SFML/Graphics.hpp>
 #include <iostream>
-#include <fstream>
 using namespace std;
 
-class World {
-    public:
-        virtual void draw(sf::RenderTarget& target) const;
+class World{
     protected:
         sf::Sprite mObject;
         sf::Texture mTexture;
         sf::Text mText;
         sf::Font mFont;
-        sf::Vector2f mPos;
+        sf::Vector2f mPosition;
+
 };
 
 #endif

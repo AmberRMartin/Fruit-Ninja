@@ -1,27 +1,38 @@
-/**
- * @file Entity.h
- * @author Matthew Barber
- * @brief declaration for derived Entity class
- * @date 2024-11-06
- */
-#ifndef ENTITY_H
-#define ENTITY_H
+#ifndef Entity_H
+#define Entity_H
 #include <SFML/Graphics.hpp>
 #include <iostream>
-#include <fstream>
 #include "World.h"
-using namespace std;
 
-class Entity :World {
-    public:
-    Entity(int rectL,int rectT, int Wid, int Len, int arrayPos[], sf::Vector2f pos,
-           bool Player, int cLevel);
-    virtual void draw();
 
-    protected:
-        int mLevel;
-        int mArrayPos[2];
-        bool mIsPlayer;
-};
+enum state {normal};
 
+class Entity:World, public sf::Drawable
+{
+public:
+    Entity(std::string s, sf::Vector2f position, sf::Vector2f size, sf::Color color);
+    Entity(){};
+    void setPosition(sf::Vector2f position);
+    void setSize(sf::Vector2f  size);
+    void setColor(sf::Color btnColor);
+    void setText(std::string s);
+    void setColorTextNormal(sf::Color textNormalColor){mTextNormal = textNormalColor;};
+
+
+    sf::Vector2f getPosition(){return mPosition;};
+    sf::Vector2f getDimensions(){return sf::Vector2f(mObject.getGlobalBounds().width, mObject.getGlobalBounds().height);};
+    sf::Uint32 getState(){return mBtnState;};
+
+
+    virtual void draw(sf::RenderTarget& target,sf::RenderStates states) const;
+
+private:
+    
+    sf::Color mObjColor;
+    sf::Uint32 mBtnState;
+    
+    //text
+    
+    sf::Color mTextNormal;
 #endif
+};
