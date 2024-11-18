@@ -10,7 +10,7 @@ enum state {normal};
 class Entity:World, public sf::Drawable
 {
 public:
-    Entity(std::string s, sf::Vector2f position, sf::Vector2f size, sf::Color color);
+    Entity(int rectL, int rectT,std::string s, sf::Vector2f position, sf::Vector2f size, sf::Color color);
     Entity(){};
     void setPosition(sf::Vector2f position);
     void setSize(sf::Vector2f  size);
