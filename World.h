@@ -9,6 +9,7 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
 using namespace std;
+enum state {normal};
 
 class World{
     protected:
