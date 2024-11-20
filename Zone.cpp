@@ -44,7 +44,8 @@ Zone::Zone(int rectL, int rectT,std::string s, sf::Vector2f position, sf::Vector
  */
 void Zone::draw(sf::RenderTarget& target,sf::RenderStates states) const{
     target.draw(mObject,states);
-    target.draw(*EntPtr[0]);
+    for(int i = 0; i < mVectorSize; i++)
+        target.draw(*EntPtr[i]);
 }
 /**
  * @brief sets the text of the object
