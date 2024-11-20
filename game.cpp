@@ -13,7 +13,10 @@
 #include "button.h"
 
 
-//Game class
+/**
+ * @brief Construct a new Game:: Game object
+ * 
+ */
 Game::Game()
 {
 
@@ -24,13 +27,26 @@ Game::Game()
         exit(1);
     }
     startmenu = false;
+//NOTE: Main, pause, and inventory menus are all using default constructors
+//They are initialized by default and don't need edits -Amber
+
+//Stats at the moment is here, also using it's default constructor.
+//I don't know if it will stay when I get the battle menu -Amber
+
 }
 
-
-void Game::draw(sf::RenderTarget& target,sf::RenderStates states) const
+/**
+ * @brief Levels up player's stats and changes inventory
+ * 
+ */
+void Game::GlevelUp()
 {
-
+//Update internal stats
+    stats.levelUp();
+//Update displayed stats
+    inventoryMenu.LV.setString("LV   " + std::to_string(stats.getLevel()));
+    inventoryMenu.HP.setString("HP   " + std::to_string(stats.getHP()));
+    inventoryMenu.ATK.setString("ATK  " + std::to_string(stats.getATK()));
 }
-
 
 

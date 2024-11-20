@@ -112,3 +112,23 @@ void Button::draw(sf::RenderTarget& target,sf::RenderStates states) const
     target.draw(mButton, states);
     target.draw(mText, states);
 }
+
+void Button::fixFiles()
+{
+    
+    mTexture.loadFromFile("Sprites/button.png");
+    if (!mTexture.loadFromFile("Sprites/button.png"))
+    {
+        std::cout<< "Cannot load button texture\n";
+        exit(1);
+    }
+    mButton.setTexture(mTexture);
+
+
+    mFont.loadFromFile("Minecraftia-Regular.ttf");
+    if (!mFont.loadFromFile("Minecraftia-Regular.ttf"))
+    { 
+        exit(2);
+    }
+    mText.setFont(mFont);
+}
