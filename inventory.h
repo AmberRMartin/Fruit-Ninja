@@ -1,3 +1,13 @@
+/**
+ * @file inventory.h
+ * @author Amber Martin
+ * @brief Inventory screen
+ * @version 0.1
+ * @date 2024-11-20
+ * 
+ * @copyright Copyright (c) 2024
+ * 
+ */
 #ifndef INVENTORY_H
 #define INVENTORY_H
 

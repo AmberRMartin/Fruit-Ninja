@@ -1,10 +1,31 @@
+/**
+ * @file inventory.cpp
+ * @author Amber Martin
+ * @brief Handles all functions for the inventory screen
+ * @version 0.1
+ * @date 2024-11-20
+ * 
+ * @copyright Copyright (c) 2024
+ * 
+ */
 #include "inventory.h"
 
+/**
+ * @brief Construct a new Inventory:: Inventory object
+ * 
+ */
 Inventory::Inventory():Inventory({450,250}, {400,400})
 {
 //Inventory inventoryMenu({450,250}, {400,400});
+//basic constructor, done this way so it can be easily adjusted in scale.
 }
 
+/**
+ * @brief Construct a new Inventory:: Inventory object
+ * 
+ * @param position position of inventory screen based on origin
+ * @param size size of screen
+ */
 Inventory::Inventory(sf::Vector2f position, sf::Vector2f size)
 {
 
@@ -78,21 +99,14 @@ Inventory::Inventory(sf::Vector2f position, sf::Vector2f size)
     Sword.setFillColor(sf::Color::Black);
     HeadTie.setFillColor(sf::Color::Black);
 
-
-/*      sf::Text LV;
-        sf::Text HP;
-        sf::Text ATK;
-        sf::Text Sword;
-        sf::Text Bandana;
-        int getMaxHP() const {return mMaxHP;}
-        int getATK() const {return mATK;}
-        int getLevel() const {return mLevel;} //Fake Levels, not influencing stats
-        
-*/
-
-
 }
 
+/**
+ * @brief Draws the screen and all stats n stuff
+ * 
+ * @param target 
+ * @param states 
+ */
 void Inventory::draw(sf::RenderTarget& target,sf::RenderStates states) const
 {
     if(isOpen == false)
@@ -111,6 +125,12 @@ void Inventory::draw(sf::RenderTarget& target,sf::RenderStates states) const
     }
 }
 
+/**
+ * @brief Checks for button clicking and adjusts appropriately
+ * 
+ * @param e 
+ * @param window 
+ */
 void Inventory::update(sf::Event& e, sf::RenderWindow& window)
 {
     if(Open.clicked(e, window))
