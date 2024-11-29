@@ -10,12 +10,21 @@ class BattleScreen: public sf::Drawable //public other stuff
     public:
         BattleScreen();
         virtual void draw(sf::RenderTarget& target,sf::RenderStates states) const;
+        void update(sf::Event& e, sf::RenderWindow& window);
+        bool DrawAttacking;
+        bool DrawDamaged;
 
     protected:
-        sf::Font font;
-        sf::Text MonsterAtk;
 
-        sf::Vector2f mPosition;
+        void ChangeMonster();
+
+        bool SkillMenu;
+
+        sf::Font font;
+
+        sf::Vector2f BackgroundPosition;
+        sf::Vector2f MonsterPosition;
+        sf::Vector2f PlayerPosition;
 
         Button Attack;
         Button Skill;
@@ -23,8 +32,6 @@ class BattleScreen: public sf::Drawable //public other stuff
         Button Skill2;
 
         sf::Sprite Background;
-        sf::Sprite SkillBackground;
-        sf::Sprite ButtonBackground;
 
         sf::Sprite MonsterN; //normal
         sf::Sprite MonsterA; //attacking
@@ -33,6 +40,11 @@ class BattleScreen: public sf::Drawable //public other stuff
         sf::Sprite PlayerN;
         sf::Sprite PlayerA;
         sf::Sprite PlayerD;
+
+        sf::Texture backTexture;
+        sf::Texture skillBackTexture;
+        sf::Texture Monsters;
+        sf::Texture Players;
 
         sf::Text PHpTxt; //player health text
         sf::Text PManaTxt; //player mana text

@@ -27,6 +27,7 @@ Game::Game()
         exit(1);
     }
     startmenu = false;
+    inBattle = false;
 //NOTE: Main, pause, and inventory menus are all using default constructors
 //They are initialized by default and don't need edits -Amber
 
