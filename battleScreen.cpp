@@ -11,6 +11,24 @@ BattleScreen::BattleScreen()
     }
     Background.setTexture(backTexture);
     Background.setPosition(200,0);
+
+    font.loadFromFile("Minecraftia-Regular.ttf");
+    PHpTxt.setFont(font);
+    PManaTxt.setFont(font);
+
+    PHpTxt.setString("HP: 20/20");
+    PManaTxt.setString("Mana: ?/?");
+
+    PHpTxt.setScale(0.8, 0.8);
+    PManaTxt.setScale(0.8,0.8);
+    
+   PHpTxt.setPosition(535,365);
+   PManaTxt.setPosition(535,415);
+
+   PHpTxt.setFillColor(sf::Color::Black);
+   PManaTxt.setFillColor(sf::Color::Black);
+
+
 //Buttons
 
     Button Temp1("Attack", {320,50},{194,55});
@@ -43,12 +61,27 @@ BattleScreen::BattleScreen()
     
 
 //Monster stuff
-    // MNTexture.loadFromFile("Sprites/monster_battle_sprites.png");
-    // if(!MNTexture.loadFromFile("Sprites/monster_battle_sprites.png"))
-    // {
-    //     exit(1);
-    // }
-    // MonsterN.setTexture(MNTexture);
+    Monsters.loadFromFile("Sprites/monster_battle_sprites.png");
+    if(!Monsters.loadFromFile("Sprites/monster_battle_sprites.png"))
+    {
+        exit(1);
+    }
+//default monster is cherry
+    MonsterN.setTexture(Monsters);
+    MonsterA.setTexture(Monsters);
+    MonsterD.setTexture(Monsters);
+
+    MonsterN.setTextureRect(sf::IntRect({0,0},{292,192}));
+    MonsterA.setTextureRect(sf::IntRect({0,297},{292,192}));
+    MonsterD.setTextureRect(sf::IntRect({0,573},{292,192}));
+
+    MonsterN.setOrigin({146,96});
+    MonsterA.setOrigin({146,96});
+    MonsterD.setOrigin({146,96});
+
+    MonsterN.setPosition({450, 200});
+    MonsterA.setPosition({450, 200});
+    MonsterD.setPosition({450,200});
 
 //Misc;
     SkillMenu = false;
@@ -65,6 +98,9 @@ void BattleScreen::draw(sf::RenderTarget& target,sf::RenderStates states) const
         target.draw(PlayerN);
         target.draw(Attack);
         target.draw(Skill);
+        target.draw(MonsterN);
+        target.draw(PHpTxt);
+        target.draw(PManaTxt);
     }
     else if (SkillMenu == true)
     {
