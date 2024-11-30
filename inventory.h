@@ -28,6 +28,7 @@ class Inventory: public sf::Drawable, public Stats
         sf::Text LV;
         sf::Text HP;
         sf::Text ATK;
+        sf::Text Mana;
 
     private:
         Button Open;
@@ -36,7 +37,6 @@ class Inventory: public sf::Drawable, public Stats
         sf::Texture menuTexture;
         sf::Vector2f mPosition; 
         sf::Text Sword;
-        sf::Text HeadTie;
         sf::Font mFont;
 };
 

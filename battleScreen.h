@@ -1,4 +1,13 @@
-
+/**
+ * @file battleScreen.h
+ * @author Amber Martin
+ * @brief Battle screen visuals
+ * @version 0.1
+ * @date 2024-11-30
+ * 
+ * @copyright Copyright (c) 2024
+ * 
+ */
 #ifndef BATTLESCREEN_H
 #define BATTLESCREEN_H
 
@@ -13,15 +22,11 @@ class BattleScreen: public sf::Drawable //public other stuff
         virtual void draw(sf::RenderTarget& target,sf::RenderStates states) const;
         void update(sf::Event& e, sf::RenderWindow& window);
         void updateStats(Stats &stats);
-        bool DrawAttacking;
-        bool DrawDamaged;
+        void ChangeMonster(int num);
 
     protected:
 
-        void ChangeMonster();
-
         bool SkillMenu;
-
         sf::Font font;
 
         sf::Vector2f BackgroundPosition;
@@ -55,16 +60,3 @@ class BattleScreen: public sf::Drawable //public other stuff
 
 
 #endif
-
-/*
-TO DO LIST:
-
-[] Create sprite
-[] Implement in battle variable
-[] Use a temp button on screen to test battle
-[] Have battle screen only show, use inventory as test
-[] Implement attack and skill buttons
-[] if Skill, make a mini screen with buttons for the skills as well
-[] Figure out how frame rates work
-
-*/
