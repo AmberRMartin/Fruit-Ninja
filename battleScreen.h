@@ -4,6 +4,7 @@
 
 #include <SFML/Graphics.hpp>
 #include "button.h"
+#include "stats.h"
 
 class BattleScreen: public sf::Drawable //public other stuff
 {
@@ -11,6 +12,7 @@ class BattleScreen: public sf::Drawable //public other stuff
         BattleScreen();
         virtual void draw(sf::RenderTarget& target,sf::RenderStates states) const;
         void update(sf::Event& e, sf::RenderWindow& window);
+        void updateStats(Stats &stats);
         bool DrawAttacking;
         bool DrawDamaged;
 
@@ -28,8 +30,9 @@ class BattleScreen: public sf::Drawable //public other stuff
 
         Button Attack;
         Button Skill;
-        Button Skill1;
-        Button Skill2;
+        Button Heal;
+        Button SkillAtk;
+        Button ReturnSkill;
 
         sf::Sprite Background;
 

@@ -48,6 +48,8 @@ void Game::GlevelUp()
     inventoryMenu.LV.setString("LV   " + std::to_string(stats.getLevel()));
     inventoryMenu.HP.setString("HP   " + std::to_string(stats.getHP()));
     inventoryMenu.ATK.setString("ATK  " + std::to_string(stats.getATK()));
+
+    battleScreen.updateStats(stats);
 }
 
 
