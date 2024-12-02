@@ -1,3 +1,13 @@
+/**
+ * @file inventory.h
+ * @author Amber Martin
+ * @brief Inventory screen
+ * @version 0.1
+ * @date 2024-11-20
+ * 
+ * @copyright Copyright (c) 2024
+ * 
+ */
 #ifndef INVENTORY_H
 #define INVENTORY_H
 
@@ -18,6 +28,7 @@ class Inventory: public sf::Drawable, public Stats
         sf::Text LV;
         sf::Text HP;
         sf::Text ATK;
+        sf::Text Mana;
 
     private:
         Button Open;
@@ -26,7 +37,6 @@ class Inventory: public sf::Drawable, public Stats
         sf::Texture menuTexture;
         sf::Vector2f mPosition; 
         sf::Text Sword;
-        sf::Text HeadTie;
         sf::Font mFont;
 };
 

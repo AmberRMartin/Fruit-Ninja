@@ -27,6 +27,7 @@ Game::Game()
         exit(1);
     }
     startmenu = false;
+    inBattle = false;
 //NOTE: Main, pause, and inventory menus are all using default constructors
 //They are initialized by default and don't need edits -Amber
 
@@ -47,6 +48,8 @@ void Game::GlevelUp()
     inventoryMenu.LV.setString("LV   " + std::to_string(stats.getLevel()));
     inventoryMenu.HP.setString("HP   " + std::to_string(stats.getHP()));
     inventoryMenu.ATK.setString("ATK  " + std::to_string(stats.getATK()));
+
+    battleScreen.updateStats(stats);
 }
 
 

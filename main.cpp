@@ -12,7 +12,6 @@
 
 // // This the main.cpp file
 // // Add #includes as you see fit
-
 #include "game.h"
 #include <SFML/Graphics.hpp>
 
@@ -21,6 +20,9 @@ int main()
     sf::RenderWindow window(sf::VideoMode(900,500), "Fruit Ninja!");
     Game game;
 
+//delete when no longer needed
+    Button temp{"Battle", {100,100}, {154,55}};
+    
 
     while(window.isOpen())
     {
@@ -53,7 +55,7 @@ int main()
             }
 
 //Map screen
-            else if (game.pauseMenu.isPaused == false && game.inventoryMenu.isOpen == false)
+            else if (game.pauseMenu.isPaused == false && game.inventoryMenu.isOpen == false && game.inBattle == false)
             {
 
 /*
@@ -66,6 +68,13 @@ You may delete this message whenever you please
                 game.pauseMenu.update(event, window);
                 window.draw(game.inventoryMenu);
                 game.inventoryMenu.update(event, window);
+
+//TEMPORARY: for nick to activate battle mode 
+window.draw(temp);
+if(temp.clicked(event, window))
+{
+    game.inBattle = true;
+}
             }
 //Pause screen
             else if (game.pauseMenu.isPaused == true && game.inventoryMenu.isOpen == false)
@@ -81,7 +90,12 @@ You may delete this message whenever you please
                 window.draw(game.inventoryMenu);
                 game.inventoryMenu.update(event, window);
             }
-            
+//Battle screen
+            else if (game.inBattle == true)
+            {
+                window.draw(game.battleScreen);
+                game.battleScreen.update(event, window);
+            }
         }
 
 

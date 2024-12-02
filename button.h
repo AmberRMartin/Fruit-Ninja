@@ -27,6 +27,7 @@ class Button: public sf::Drawable
     sf::Vector2f getDimensions(){return sf::Vector2f(mButton.getGlobalBounds().width, mButton.getGlobalBounds().height);};
     sf::Uint32 getState(){return mBtnState;};
     bool clicked(sf::Event& e, sf::RenderWindow& window);
+    bool hover(sf::Event& e, sf::RenderWindow& window);
     void fixFiles();
 
     private:
