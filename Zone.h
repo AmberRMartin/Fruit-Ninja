@@ -10,6 +10,7 @@
 #include <iostream>
 #include "World.h"
 #include "Entity.h"
+using namespace std;
 
 
 
@@ -36,7 +37,7 @@ public:
     sf::Vector2f getDimensions(){return sf::Vector2f(mObject.getGlobalBounds().width, mObject.getGlobalBounds().height);};
     sf::Uint32 getState(){return mBtnState;};
 
-
+    void update(sf::Event& e, sf::RenderWindow& window);
     virtual void draw(sf::RenderTarget& target,sf::RenderStates states) const;
 
 private:
@@ -48,7 +49,7 @@ private:
     //text
     
     sf::Color mTextNormal;
-    char Zone1[][10] =            {{'X', 'G', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X'},      
+    char Zone1[10][10] =            {{'X', 'G', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X'},      
                                    {'X', '-', '-', '-', '-', '-', '-', '-', '-', 'X'},      
                                    {'X', '-', 'X', 'X', 'X', 'X', '-', 'X', '-', 'X'},      
                                    {'X', '-', 'X', 'X', 'X', '-', '-', 'X', '-', 'X'},      

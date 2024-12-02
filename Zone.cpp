@@ -31,7 +31,8 @@ Zone::Zone(int rectL, int rectT,std::string s, sf::Vector2f position, sf::Vector
     mObjColor = color;
     mBtnState = normal;
     Entity* temp;
-    temp = new Entity(10,10,"Level 1", {300,250},{150,100}, sf::Color::Blue, {0,0}, false);
+    int arr[2] = {9,7};
+    temp = new Entity(10,10,"Level 1", {300,250},{150,100}, sf::Color::Blue, arr, false);
     EntPtr.push_back(temp);
     mVectorSize++;
 }
@@ -106,9 +107,9 @@ void Zone::setColor(sf::Color objColor){
  * @param dir the intended direction, 1 N 2 E 3 S 4 W
  * @return int returns an int for if invalid move (-1), valid move(0), or entering combat(1)
  */
-int validMove(int dir){
-    int row = EntPtr[0].mArrayPos[0];
-    int col = EntPtr[0].mArrayPos[1];
+int Zone::validMove(int dir){
+    int row = EntPtr[0]->getArrayPos(0);
+    int col = EntPtr[0]->getArrayPos(1);
     if(dir == 1){
         if(row > 0){
             if(Zone1[row-1][col] == 'X')
@@ -151,5 +152,58 @@ int validMove(int dir){
     }
     else{
         return -1;
+    }
+    return -1;
+}
+void Zone::update(sf::Event& e, sf::RenderWindow& window){
+    int row = EntPtr[0]->getArrayPos(0);
+    int col = EntPtr[0]->getArrayPos(1);
+    if(e.type == sf::Event::KeyPressed){
+        if(e.key.code == sf::Keyboard::W){
+            if(validMove(1) == 0){
+                EntPtr[0]->setPosition(0,-50);
+                Zone1[row][col] = '-';
+                Zone1[row-1][col] = 'C'; 
+                EntPtr[0]->setArrayPos(row-1,col);
+            }
+            else if(validMove(1) == 1){
+                //enter battle
+            }
+           
+        }
+        else if(e.key.code == sf::Keyboard::D){
+            if(validMove(2) == 0){
+                EntPtr[0]->setPosition(50,0);
+                Zone1[row][col] = '-';
+                Zone1[row][col+1] = 'C';
+                EntPtr[0]->setArrayPos(row,col+1); 
+            }
+            else if(validMove(1) == 1){
+                //enter battle
+            }
+
+        }
+        else if(e.key.code == sf::Keyboard::S){
+            if(validMove(3) == 0){
+                EntPtr[0]->setPosition(0,50);
+                Zone1[row][col] = '-';
+                Zone1[row+1][col] = 'C'; 
+                EntPtr[0]->setArrayPos(row+1,col);
+            }
+            else if(validMove(1) == 1){
+                //enter battle
+            }
+        }
+        else if(e.key.code == sf::Keyboard::A){
+            if(validMove(4) == 0){
+                EntPtr[0]->setPosition(-50,0); 
+                Zone1[row][col] = '-';
+                Zone1[row][col-1] = 'C';
+                EntPtr[0]->setArrayPos(row,col-1);
+            }
+            else if(validMove(1) == 1){
+                //enter battle
+            }
+        }
     }
 }

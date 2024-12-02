@@ -22,7 +22,8 @@ int main()
 
 //delete when no longer needed
     Button temp{"Battle", {100,100}, {154,55}};
-    
+    Zone Zone1(0,0,"Yes", {450,250},{900,500}, sf::Color::Red);
+    window.setKeyRepeatEnabled(false);
 
     while(window.isOpen())
     {
