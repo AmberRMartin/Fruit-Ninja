@@ -24,12 +24,12 @@ public:
 
 
     virtual void draw(sf::RenderTarget& target,sf::RenderStates states) const;
-
+    int mArrayPos[2] = {0,0};
 private:
     
     sf::Color mObjColor;
     sf::Uint32 mBtnState;
-    int mArrayPos[2] = {0,0};
+    
     bool mPC = false;
     //text
     

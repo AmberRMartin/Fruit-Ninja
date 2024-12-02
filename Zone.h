@@ -30,7 +30,7 @@ public:
     void setColor(sf::Color btnColor);
     void setText(std::string s);
     void setColorTextNormal(sf::Color textNormalColor){mTextNormal = textNormalColor;};
-
+    int validMove(int dir);
 
     sf::Vector2f getPosition(){return mPosition;};
     sf::Vector2f getDimensions(){return sf::Vector2f(mObject.getGlobalBounds().width, mObject.getGlobalBounds().height);};

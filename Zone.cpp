@@ -100,3 +100,56 @@ void Zone::setColor(sf::Color objColor){
     mObjColor = objColor;
     mObject.setColor(objColor);
 }
+/**
+ * @brief checks if the movement is valid
+ * 
+ * @param dir the intended direction, 1 N 2 E 3 S 4 W
+ * @return int returns an int for if invalid move (-1), valid move(0), or entering combat(1)
+ */
+int validMove(int dir){
+    int row = EntPtr[0].mArrayPos[0];
+    int col = EntPtr[0].mArrayPos[1];
+    if(dir == 1){
+        if(row > 0){
+            if(Zone1[row-1][col] == 'X')
+                return -1;
+            else if(Zone1[row-1][col] == '-')
+                return 0;
+            else if(Zone1[row-1][col] == 'E')
+                return 1;
+        }
+    }
+    else if(dir == 2){
+         if(col < 10){
+            if(Zone1[row][col+1] == 'X')
+                return -1;
+            else if(Zone1[row][col+1] == '-')
+                return 0;
+            else if(Zone1[row][col+1] == 'E')
+                return 1;
+        }
+    }
+    else if(dir == 3){
+         if(row < 10){
+            if(Zone1[row+1][col] == 'X')
+                return -1;
+            else if(Zone1[row+1][col] == '-')
+                return 0;
+            else if(Zone1[row+1][col] == 'E')
+                return 1;
+        }
+    }
+    else if(dir == 4){
+        if(col < 10){
+            if(Zone1[row][col-1] == 'X')
+                return -1;
+            else if(Zone1[row][col-1] == '-')
+                return 0;
+            else if(Zone1[row][col-1] == 'E')
+                return 1;
+        }
+    }
+    else{
+        return -1;
+    }
+}
