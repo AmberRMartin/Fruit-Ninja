@@ -31,7 +31,7 @@ Zone::Zone(int rectL, int rectT,std::string s, sf::Vector2f position, sf::Vector
     mObjColor = color;
     mBtnState = normal;
     Entity* temp;
-    temp = new Entity(10,10,"Level 1", {300,250},{150,100}, sf::Color::Blue);
+    temp = new Entity(10,10,"Level 1", {300,250},{150,100}, sf::Color::Blue, {0,0}, false);
     EntPtr.push_back(temp);
     mVectorSize++;
 }

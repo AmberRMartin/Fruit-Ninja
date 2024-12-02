@@ -14,7 +14,7 @@
  * @param size size of the Entity
  * @param color color of the Entity
  */
-Entity::Entity(int rectL, int rectT,std::string s, sf::Vector2f position, sf::Vector2f size, sf::Color color){
+Entity::Entity(int rectL, int rectT,std::string s, sf::Vector2f position, sf::Vector2f size, sf::Color color, int ArrayPos[], bool PC){
     if (!mTexture.loadFromFile("button.png"))
     {
         std::cout<<"Error opening file\n";
@@ -47,6 +47,8 @@ Entity::Entity(int rectL, int rectT,std::string s, sf::Vector2f position, sf::Ve
     mTextNormal = sf::Color::Red;
     mText.setFillColor(mTextNormal);
     mBtnState = normal;
+    mArrayPos[0] = ArrayPos[0];
+    mArrayPos[1] = ArrayPos[1];
 }
 
 /**

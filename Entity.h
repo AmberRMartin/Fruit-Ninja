@@ -9,7 +9,7 @@
 class Entity:World, public sf::Drawable
 {
 public:
-    Entity(int rectL, int rectT,std::string s, sf::Vector2f position, sf::Vector2f size, sf::Color color);
+    Entity(int rectL, int rectT,std::string s, sf::Vector2f position, sf::Vector2f size, sf::Color color, int ArrayPos[], bool PC);
     ~Entity(){};
     void setPosition(sf::Vector2f position);
     void setSize(sf::Vector2f  size);
@@ -29,7 +29,8 @@ private:
     
     sf::Color mObjColor;
     sf::Uint32 mBtnState;
-    
+    int mArrayPos[2] = {0,0};
+    bool mPC = false;
     //text
     
     sf::Color mTextNormal;
