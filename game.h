@@ -24,7 +24,7 @@ Good luck guys!
 #include "pause.h"
 #include "inventory.h"
 #include "stats.h"
-
+#include "battleScreen.h"
 
 //Game class, add as needed, avoid subtracting 
 class Game
@@ -38,10 +38,13 @@ class Game
 
 //Variables
     bool startmenu;
+    bool inBattle;
+
     MainMenu mainMenu;
     Pause pauseMenu;
     Inventory inventoryMenu;
     Stats stats;
+    BattleScreen battleScreen;
 
     protected:
     bool mIsDone;

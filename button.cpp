@@ -132,3 +132,19 @@ void Button::fixFiles()
     }
     mText.setFont(mFont);
 }
+
+bool Button::hover(sf::Event& e, sf::RenderWindow& window)
+{
+    sf::Vector2i mPos = sf::Mouse::getPosition(window);
+    sf::Vector2f mousePosition = window.mapPixelToCoords(mPos);
+    bool mouseInButton =    mousePosition.x >= mButton.getPosition().x - mButton.getGlobalBounds().width/2
+                            && mousePosition.x <= mButton.getPosition().x + mButton.getGlobalBounds().width/2
+                            && mousePosition.y >= mButton.getPosition().y - mButton.getGlobalBounds().height/2
+                            && mousePosition.y <= mButton.getPosition().y + mButton.getGlobalBounds().height/2;
+
+    if(mouseInButton)
+    {
+        return true;
+    }
+    return false;
+}

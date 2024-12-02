@@ -1,3 +1,13 @@
+/**
+ * @file pause.h
+ * @author Amber Martin
+ * @brief Pause menu class
+ * @version 0.1
+ * @date 2024-11-20
+ * 
+ * @copyright Copyright (c) 2024
+ * 
+ */
 #ifndef PAUSE_H
 #define PAUSE_H
 

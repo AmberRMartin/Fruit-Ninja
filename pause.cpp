@@ -1,15 +1,19 @@
+/**
+ * @file pause.cpp
+ * @author Amber Martin
+ * @brief Pause functions for drawing/update
+ * @version 0.1
+ * @date 2024-11-20
+ * 
+ * @copyright Copyright (c) 2024
+ * 
+ */
 #include "pause.h"
 
-
-/*    public:
-    Pause();
-    virtual void draw(sf::RenderTarget& target,sf::RenderStates states) const;
-    bool isPaused;
-    Button mPause;
-    Button mResume;
-    Button mExit;
-*/
-
+/**
+ * @brief Construct a new Pause:: Pause object
+ * 
+ */
 Pause::Pause()
 {
     isPaused = false; 
@@ -29,7 +33,12 @@ Pause::Pause()
 }
 
 
-
+/**
+ * @brief Draws the buttons n stuff for pause menu
+ * 
+ * @param target 
+ * @param states 
+ */
 void Pause::draw(sf::RenderTarget& target,sf::RenderStates states) const
 {
     if(!isPaused)
@@ -43,6 +52,13 @@ void Pause::draw(sf::RenderTarget& target,sf::RenderStates states) const
     }
 }
 
+
+/**
+ * @brief checks for button clicking and updates display
+ * 
+ * @param e 
+ * @param window 
+ */
 void Pause::update(sf::Event& e, sf::RenderWindow& window)
 {
     if(mPause.clicked(e, window))
