@@ -16,7 +16,7 @@
  */
 Zone::Zone(int rectL, int rectT,std::string s, sf::Vector2f position, sf::Vector2f size, sf::Color color){
     mVectorSize =0;
-    if (!mTexture.loadFromFile("R.jpg"))
+    if (!mTexture.loadFromFile("Sprites/map background.png"))
     {
         std::cout<<"Error opening file\n";
         exit(1);
@@ -29,9 +29,72 @@ Zone::Zone(int rectL, int rectT,std::string s, sf::Vector2f position, sf::Vector
     mObject.setPosition(position.x,position.y);
     mPosition = position;
     mObjColor = color;
-    mBtnState = normal;
+    mBtnState = norm;
+    if (!mTreeTexture.loadFromFile("Sprites/map trees.png"))
+    {
+        std::cout<<"Error opening file\n";
+        exit(1);
+    }
+    mTrees.setTexture(mTreeTexture);
+    imageSize=mTreeTexture.getSize();
+    mTrees.setOrigin(imageSize.x/2, imageSize.y/2);
+    mTrees.setScale(size.x/mTreeTexture.getSize().x,size.y/mTreeTexture.getSize().y);
+    mTrees.setPosition(position.x,position.y);
+
+    if (!mFont.loadFromFile("Minecraftia-Regular.ttf"))
+    {
+        std::cout<<"Error opening file\n";
+        exit(1);
+    }
+    mText.setFont(mFont);
+    unsigned int fontSize = 30;
+    mText.setCharacterSize(fontSize);
+    //set label
+    mText.setString("YOU WIN!");
+    //set origin to the middle
+    mText.setOrigin(0, 0);
+    //set position at the middle of the button
+    mText.setPosition(300, 250);
+    mText.setFillColor(sf::Color::Green);
+
     Entity* temp;
-    temp = new Entity(10,10,"Level 1", {300,250},{150,100}, sf::Color::Blue);
+    int arr[2] = {9,7};
+    temp = new Entity(0,0,"Level 1", {575,475},{50,50}, sf::Color::Blue, arr, true);
+    EntPtr.push_back(temp);
+    mVectorSize++;
+    arr[0] = 6;
+    arr[1] = 7;
+    temp = new Entity(50,50,"Level 1", {575,325},{50,50}, sf::Color::Blue, arr, false);
+    EntPtr.push_back(temp);
+    mVectorSize++;
+    arr[0] = 1;
+    arr[1] = 8;
+    temp = new Entity(100,50,"Level 1", {625,75},{50,50}, sf::Color::Blue, arr, false);
+    EntPtr.push_back(temp);
+    mVectorSize++;
+    arr[0] = 4;
+    arr[1] = 5;
+    temp = new Entity(150,50,"Level 2", {475,225},{50,50}, sf::Color::Blue, arr, false);
+    EntPtr.push_back(temp);
+    mVectorSize++;
+    arr[0] = 6;
+    arr[1] = 3;
+    temp = new Entity(0,50,"Level 1", {375,325},{50,50}, sf::Color::Blue, arr, false);
+    EntPtr.push_back(temp);
+    mVectorSize++;
+    arr[0] = 1;
+    arr[1] = 4;
+    temp = new Entity(0,50,"Level 3", {425,75},{50,50}, sf::Color::Blue, arr, false);
+    EntPtr.push_back(temp);
+    mVectorSize++;
+    arr[0] = 8;
+    arr[1] = 1;
+    temp = new Entity(50,50,"Level 3", {275,425},{50,50}, sf::Color::Blue, arr, false);
+    EntPtr.push_back(temp);
+    mVectorSize++;
+    arr[0] = 1;
+    arr[1] = 1;
+    temp = new Entity(0,50,"Level 4", {275,75},{50,50}, sf::Color::Blue, arr, false);
     EntPtr.push_back(temp);
     mVectorSize++;
 }
@@ -43,9 +106,16 @@ Zone::Zone(int rectL, int rectT,std::string s, sf::Vector2f position, sf::Vector
  * @param states 
  */
 void Zone::draw(sf::RenderTarget& target,sf::RenderStates states) const{
-    target.draw(mObject,states);
-    for(int i = 0; i < mVectorSize; i++)
-        target.draw(*EntPtr[i]);
+    if(!mWin){
+        target.draw(mObject,states);
+        for(int i = 0; i < mVectorSize; i++)
+            target.draw(*EntPtr[i]);
+        target.draw(mTrees,states);
+    }
+    else{
+        target.clear();
+        target.draw(mText, states);
+    }
 }
 /**
  * @brief sets the text of the object
@@ -99,4 +169,159 @@ void Zone::setSize(sf::Vector2f  size){
 void Zone::setColor(sf::Color objColor){
     mObjColor = objColor;
     mObject.setColor(objColor);
+}
+/**
+ * @brief checks if the movement is valid
+ * 
+ * @param dir the intended direction, 1 N 2 E 3 S 4 W
+ * @return int returns an int for if invalid move (-1), valid move(0), or entering combat(1)
+ */
+int Zone::validMove(int dir){
+    int row = EntPtr[0]->getArrayPos(0);
+    int col = EntPtr[0]->getArrayPos(1);
+    if(dir == 1){
+        if(row > 0){
+            if(Zone1[row-1][col] == 'X')
+                return -1;
+            else if(Zone1[row-1][col] == '-')
+                return 0;
+            else if(Zone1[row-1][col] == 'E')
+                return 1;
+            else if(Zone1[row-1][col] == 'G')
+                return 2;
+        }
+    }
+    else if(dir == 2){
+         if(col < 10){
+            if(Zone1[row][col+1] == 'X')
+                return -1;
+            else if(Zone1[row][col+1] == '-')
+                return 0;
+            else if(Zone1[row][col+1] == 'E')
+                return 1;
+        }
+    }
+    else if(dir == 3){
+         if(row < 10){
+            if(Zone1[row+1][col] == 'X')
+                return -1;
+            else if(Zone1[row+1][col] == '-')
+                return 0;
+            else if(Zone1[row+1][col] == 'E')
+                return 1;
+        }
+    }
+    else if(dir == 4){
+        if(col < 10){
+            if(Zone1[row][col-1] == 'X')
+                return -1;
+            else if(Zone1[row][col-1] == '-')
+                return 0;
+            else if(Zone1[row][col-1] == 'E')
+                return 1;
+        }
+    }
+    else{
+        return -1;
+    }
+    return -1;
+}
+bool Zone::update(sf::Event& e, sf::RenderWindow& window){
+    int row = EntPtr[0]->getArrayPos(0);
+    int col = EntPtr[0]->getArrayPos(1);
+    if(e.type == sf::Event::KeyPressed){
+        if(e.key.code == sf::Keyboard::W){
+            if(validMove(1) == 0){
+                EntPtr[0]->setPosition(0,-50);
+                Zone1[row][col] = '-';
+                Zone1[row-1][col] = 'C'; 
+                EntPtr[0]->setArrayPos(row-1,col);
+                return false;
+            }
+            else if(validMove(1) == 1){
+                for(int i = 1;i < mVectorSize; i++){
+                    if(EntPtr[i]->mArrayPos[0] == row - 1){
+                        if(EntPtr[i]->mArrayPos[1] == col){
+                            Entity* temp = EntPtr[i];
+                            EntPtr[i] = EntPtr[mVectorSize - 1];
+                            delete temp;
+                            EntPtr.pop_back();
+                        }
+                    }
+                }
+                return true;
+            }
+           else if(validMove(1) == 2){
+            mWin = true;
+           }
+        }
+        else if(e.key.code == sf::Keyboard::D){
+            if(validMove(2) == 0){
+                EntPtr[0]->setPosition(50,0);
+                Zone1[row][col] = '-';
+                Zone1[row][col+1] = 'C';
+                EntPtr[0]->setArrayPos(row,col+1); 
+                return false;
+            }
+            else if(validMove(2) == 1){
+                for(int i = 1;i < mVectorSize; i++){
+                    if(EntPtr[i]->mArrayPos[0] == row){
+                        if(EntPtr[i]->mArrayPos[1] == col+1){
+                            Entity* temp = EntPtr[i];
+                            EntPtr[i] = EntPtr[mVectorSize - 1];
+                            delete temp;
+                            EntPtr.pop_back();
+                        }
+                    }
+                }
+                return true;
+            }
+
+        }
+        else if(e.key.code == sf::Keyboard::S){
+            if(validMove(3) == 0){
+                EntPtr[0]->setPosition(0,50);
+                Zone1[row][col] = '-';
+                Zone1[row+1][col] = 'C'; 
+                EntPtr[0]->setArrayPos(row+1,col);
+                return false;
+            }
+            else if(validMove(3) == 1){
+                for(int i = 1;i < mVectorSize; i++){
+                    if(EntPtr[i]->mArrayPos[0] == row + 1){
+                        if(EntPtr[i]->mArrayPos[1] == col){
+                            Entity* temp = EntPtr[i];
+                            EntPtr[i] = EntPtr[mVectorSize - 1];
+                            delete temp;
+                            EntPtr.pop_back();
+                        }
+                    }
+                }
+                return true;
+            }
+        }
+        else if(e.key.code == sf::Keyboard::A){
+            if(validMove(4) == 0){
+                EntPtr[0]->setPosition(-50,0); 
+                Zone1[row][col] = '-';
+                Zone1[row][col-1] = 'C';
+                EntPtr[0]->setArrayPos(row,col-1);
+                return false;
+            }
+            else if(validMove(4) == 1){
+                for(int i = 1;i < mVectorSize; i++){
+                    if(EntPtr[i]->mArrayPos[0] == row){
+                        if(EntPtr[i]->mArrayPos[1] == col-1){
+                            Entity* temp = EntPtr[i];
+                            EntPtr[i] = EntPtr[mVectorSize - 1];
+                            delete temp;
+                            EntPtr.pop_back();
+                        }
+                    }
+                }
+                return true;
+            }
+        }
+    }
+    return false;
 }

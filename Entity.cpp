@@ -14,8 +14,8 @@
  * @param size size of the Entity
  * @param color color of the Entity
  */
-Entity::Entity(int rectL, int rectT,std::string s, sf::Vector2f position, sf::Vector2f size, sf::Color color){
-    if (!mTexture.loadFromFile("button.png"))
+Entity::Entity(int rectL, int rectT,std::string s, sf::Vector2f position, sf::Vector2f size, sf::Color color, int ArrayPos[], bool PC){
+    if (!mTexture.loadFromFile("Sprites/map_misc_sprites.png"))
     {
         std::cout<<"Error opening file\n";
         exit(1);
@@ -28,8 +28,6 @@ Entity::Entity(int rectL, int rectT,std::string s, sf::Vector2f position, sf::Ve
     mObject.setPosition(position.x,position.y);
     mPosition = position;
     mObjColor = color;
-    mObject.setColor(color);
-    //TODO: finish
     if (!mFont.loadFromFile("Minecraftia-Regular.ttf"))
     {
         std::cout<<"Error opening file\n";
@@ -46,7 +44,10 @@ Entity::Entity(int rectL, int rectT,std::string s, sf::Vector2f position, sf::Ve
     mText.setPosition(position.x, position.y -(mObject.getGlobalBounds().height * 0.3));
     mTextNormal = sf::Color::Red;
     mText.setFillColor(mTextNormal);
-    mBtnState = normal;
+    mBtnState = norm;
+    mArrayPos[0] = ArrayPos[0];
+    mArrayPos[1] = ArrayPos[1];
+    mPC = PC;
 }
 
 /**
@@ -57,7 +58,8 @@ Entity::Entity(int rectL, int rectT,std::string s, sf::Vector2f position, sf::Ve
  */
 void Entity::draw(sf::RenderTarget& target,sf::RenderStates states) const{
     target.draw(mObject,states);
-    target.draw(mText,states);
+    if(!mPC)
+        target.draw(mText,states);
 }
 /**
  * @brief sets the text of the object
@@ -79,13 +81,14 @@ void Entity::setText(std::string s){
  * 
  * @param position the new position of the object
  */
-void Entity::setPosition(sf::Vector2f position){
-    mObject.setPosition(position.x,position.y);
-    mPosition = position;
-    unsigned int fontSize = mObject.getGlobalBounds().height/2;
+void Entity::setPosition(int hor, int vert){
+    sf::Vector2f position = getPosition();
+    mObject.setPosition(position.x+ hor,position.y + vert);
+    mPosition = {position.x + hor, position.y + vert};
+    unsigned int fontSize = mObject.getGlobalBounds().height/5;
     mText.setOrigin(mText.getGlobalBounds().width/2, mText.getGlobalBounds().height/2);
     //set position at the middle of the button
-    mText.setPosition(mPosition.x, mPosition.y-fontSize/4);
+   mText.setPosition(mPosition.x + hor, mPosition.y + vert);
 }/**
  * @brief changes the size of the object and text
  * 
@@ -111,4 +114,14 @@ void Entity::setSize(sf::Vector2f  size){
 void Entity::setColor(sf::Color objColor){
     mObjColor = objColor;
     mObject.setColor(objColor);
+}
+int Entity::getArrayPos(int index){
+    if(index == 1 || index == 0){
+        return mArrayPos[index];
+    }
+    return -1;
+}
+void Entity::setArrayPos(int left, int right){
+    mArrayPos[0] = left;
+    mArrayPos[1]= right;
 }
