@@ -39,7 +39,7 @@ void Battle::battleinstance()
     Action heal(2, false, 10);
     mPlayerAbilities.push_back(strongAttack);
     mPlayerAbilities.push_back(heal);
-    mPlayer = stats;
+    //mPlayer = stats;
 }
 
 /**

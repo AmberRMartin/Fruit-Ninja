@@ -39,7 +39,7 @@ protected:
     double mDamage;
     int mAction;
 
-    friend class Game
+    friend class Game;
 };
 
 #endif
