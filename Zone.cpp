@@ -92,6 +92,7 @@ void Zone::draw(sf::RenderTarget& target,sf::RenderStates states) const{
     target.draw(mObject,states);
     for(int i = 0; i < mVectorSize; i++)
         target.draw(*EntPtr[i]);
+    target.draw(mTrees,states);
 }
 /**
  * @brief sets the text of the object
