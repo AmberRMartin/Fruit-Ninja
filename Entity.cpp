@@ -15,7 +15,7 @@
  * @param color color of the Entity
  */
 Entity::Entity(int rectL, int rectT,std::string s, sf::Vector2f position, sf::Vector2f size, sf::Color color, int ArrayPos[], bool PC){
-    if (!mTexture.loadFromFile("button.png"))
+    if (!mTexture.loadFromFile("Sprites/map_misc_sprites.png"))
     {
         std::cout<<"Error opening file\n";
         exit(1);
