@@ -21,13 +21,12 @@ public:
     ~Battle();
     void battleinstance();
     void battleLoop();
-    void PlayerAction();
+    void PlayerAction(sf::Event& e, sf::RenderWindow& window);
     void PlayerProcessAndCheck();
     void MonsterAction();
     void MonsterProcessAndCheck();
     void EndBattle();
     bool isInBattle;
-    friend BattleScreen;
 protected:
     Stats mMonster;
     std::vector<Action> mPlayerAbilities;
@@ -38,8 +37,7 @@ protected:
     Action* abilityptr;
     double mDamage;
     int mAction;
-
-    friend class Game
+    friend class Game;
 };
 
 #endif

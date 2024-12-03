@@ -24,6 +24,8 @@ class BattleScreen: public sf::Drawable //public other stuff
         void updateStats(Stats &stats);
         void ChangeMonster(int num);
 
+        void PlayerAction(sf::Event& e, sf::RenderWindow& window);
+
     protected:
 
         bool SkillMenu;

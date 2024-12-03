@@ -64,10 +64,20 @@ void Battle::battleLoop()
  * @brief For the Player to do an action
  * 
  */
-void Battle::PlayerAction()
+void Battle::PlayerAction(sf::Event& e, sf::RenderWindow& window)
 {
-    sf::Event event;
-    //2a. Normal Attack or Abilities
+    if (Attack.clicked(e, window))
+    {
+        abilityptr = &basicAttack;
+    }
+    else if (SkillAtk.clicked(e, window))
+    {
+        abilityptr = &mPlayerAbilities[1];
+    }
+    else if (Heal.clicked(e, window))
+    {
+        abilityptr = &mPlayerAbilities[2];
+    }
     
     PlayerProcessAndCheck();
 }

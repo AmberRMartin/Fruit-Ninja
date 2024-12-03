@@ -47,13 +47,11 @@ class Game
     Stats stats;
     BattleScreen battleScreen;
     Battle battle;
-
+    
 
     protected:
     bool mIsDone;
     sf::Font mFont;
-
-    friend class Battle;
 };
 
 //Functions for misc stuff go here
