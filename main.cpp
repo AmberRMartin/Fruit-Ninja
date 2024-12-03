@@ -1,13 +1,13 @@
-// /**
-//  * @file main.cpp
-//  * @author Amber Martin, Nicholas Cicala, Matthew Barber
-//  * @brief Create and play a small turn-based rpg called Fruit Ninja
-//  * @version 0.1
-//  * @date 2024-11-03
-//  * @compile  g++ -std=c++11 *.cpp -o sfml-app -lsfml-graphics -lsfml-window -lsfml-system
-//  * @copyright Copyright (c) 2024
-//  * 
-//  */
+/**
+ * @file main.cpp
+ * @author Amber Martin, Nicholas Cicala, Matthew Barber
+ * @brief Create and play a small turn-based rpg called Fruit Ninja
+ * @version 0.1
+ * @date 2024-11-03
+ * @compile  g++ -std=c++11 *.cpp -o sfml-app -lsfml-graphics -lsfml-window -lsfml-system
+ * @copyright Copyright (c) 2024
+ * 
+ */
 
 
 // // This the main.cpp file
