@@ -19,6 +19,9 @@ Stats::Stats()
     fullHeal();
     mATK = 5;
     mLevel = 1;
+    mMaxMana = 10;
+    fullMP();
+    mName = "";
 }
 
 /**
@@ -27,13 +30,18 @@ Stats::Stats()
  * @param h Generated Health
  * @param a Generated Attack
  * @param l Generated Level
+ * @param m Generated Mana
+ * @param n Name
  */
-Stats::Stats(int h, int a, int l)
+Stats::Stats(int h, int a, int l, int m, std::string n)
 {
     mMaxHP = h;
     fullHeal();
     mATK = a;
     mLevel = l;
+    mMaxMana = m;
+    fullMP();
+    mName = n;
 }
 
 /**
@@ -42,7 +50,7 @@ Stats::Stats(int h, int a, int l)
  * 
  * @param damage HP to remove
  */
-void Stats::reduceHP(int damage)
+void Stats::isAttacked(int damage)
 {
     if (mHP < damage)
     {
@@ -55,13 +63,25 @@ void Stats::reduceHP(int damage)
 }
 
 /**
+ * @brief Reduction in MP via using abilities
+ * 
+ * @param cost MP to remove
+ */
+void Stats::spendMP(int cost)
+{
+    mMana -= cost;
+}
+
+/**
  * @brief Increases stats, Not final numbers
  * 
  */
 void Stats::levelUp()
 {
-    mMaxHP = mMaxHP + 5;
+    mMaxHP = mMaxHP + 6;
     fullHeal();
-    mATK = mATK + 3;
+    mATK = mATK + 4;
+    mMaxMana = mMaxMana + 3;
+    fullMP();
     mLevel++;
 }

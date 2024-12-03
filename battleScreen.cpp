@@ -184,8 +184,8 @@ void BattleScreen::updateStats(Stats &stats)
     PHpTxt.setString("HP: " + hp + "/" + hp);
 //this is what I assume mana looks like. fix whenever we have that function
 //only thing that needs edited is the max mana name function
-    //std::string mana = std::to_string(stats.getMaxMana());
-    //PManaTxt.setString("Tea: " + mana + "/" + mana);
+    std::string mana = std::to_string(stats.getMaxMana());
+    PManaTxt.setString("Tea: " + mana + "/" + mana);
 }
 
 /**
