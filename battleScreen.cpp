@@ -33,7 +33,7 @@ BattleScreen::BattleScreen()
 
 //ADJUST HERE TO SET TEA TO LEVEL ONE VALUES
     PHpTxt.setString("HP: 20/20");
-    PManaTxt.setString("Tea: ?/?");
+    PManaTxt.setString("Tea: 10/10");
 
     PHpTxt.setScale(0.8, 0.8);
     PManaTxt.setScale(0.8,0.8);
@@ -161,13 +161,14 @@ void BattleScreen::update(sf::Event& e, sf::RenderWindow& window)
     {
         SkillMenu = false;
     }
-
+    
+    
 /*
 IMPORTANT NOTE
 There is 1 things that buttons do: return true if you click them
 Thats it. That is their ONLY function. If you click inside, it returns true
 Please do not change that function. It will break literally everything
-
+    
 Also note: you'll need to update hp and mana here too. no I don't know how, perhaps you can add
 another function or change the header to add a stats variable?
 */

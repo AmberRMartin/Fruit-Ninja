@@ -9,19 +9,17 @@
 #ifndef BATTLE_HPP
 #define BATTLE_HPP
 
-//#include "game.h"
 #include "stats.h"
 #include "action.h"
+#include "battleScreen.h"
 #include <vector>
 #include <string>
 
-class Battle{
+class Battle : public BattleScreen{
 public:
     Battle();
-    Battle(int n);
     ~Battle();
-    void battleinstance(int numMonsters);
-    void generateMonster(int hp, int a, int l, int m, std::string n);
+    void battleinstance();
     void battleLoop();
     void PlayerAction();
     void PlayerProcessAndCheck();
@@ -29,8 +27,9 @@ public:
     void MonsterProcessAndCheck();
     void EndBattle();
     bool isInBattle;
+    friend BattleScreen;
 protected:
-    std::vector<Stats> mMonsters;
+    Stats mMonster;
     std::vector<Action> mPlayerAbilities;
     Action basicAttack;
     Stats player;
@@ -39,6 +38,8 @@ protected:
     Action* abilityptr;
     double mDamage;
     int mAction;
+
+    friend class Game
 };
 
 #endif

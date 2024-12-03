@@ -21,7 +21,6 @@ Stats::Stats()
     mLevel = 1;
     mMaxMana = 10;
     fullMP();
-    mName = "";
 }
 
 /**
@@ -31,9 +30,8 @@ Stats::Stats()
  * @param a Generated Attack
  * @param l Generated Level
  * @param m Generated Mana
- * @param n Name
  */
-Stats::Stats(int h, int a, int l, int m, std::string n)
+Stats::Stats(int h, int a, int l, int m)
 {
     mMaxHP = h;
     fullHeal();
@@ -41,7 +39,6 @@ Stats::Stats(int h, int a, int l, int m, std::string n)
     mLevel = l;
     mMaxMana = m;
     fullMP();
-    mName = n;
 }
 
 /**

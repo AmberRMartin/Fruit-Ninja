@@ -19,7 +19,6 @@ Action::Action()
     mDamageMult = 1;
     mTargetsMonster = true;
     mCost = 0;
-    mName = "Attack";
 }
 
 /**
@@ -30,10 +29,9 @@ Action::Action()
  * @param m Cost in Mana
  * @param n Name of ability
  */
-Action::Action(double d, bool t, int m, std::string n)
+Action::Action(double d, bool t, int m)
 {
     mDamageMult = d;
     mTargetsMonster = t;
     mCost = m;
-    mName = n;
 }

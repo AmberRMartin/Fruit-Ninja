@@ -18,17 +18,15 @@ class Action
 {
 public:
     Action();
-    Action(double d, bool t, int m, std::string n);
-    double getDamage() const {return mDamageMult;} // for display stuff
-    double getCost() const {return mCost;} // for display stuff
-    double getTarget() const {return mTargetsMonster;} // for display stuff
-    std::string getName() const {return mName;}
+    Action(double d, bool t, int m);
+    double getDamage() const {return mDamageMult;}
+    double getCost() const {return mCost;}
+    double getTarget() const {return mTargetsMonster;}
     friend Stats;
 protected:
     double mDamageMult;
     bool mTargetsMonster;
     int mCost;
-    std::string mName;
 };
 
 #endif

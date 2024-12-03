@@ -25,6 +25,7 @@ Good luck guys!
 #include "inventory.h"
 #include "stats.h"
 #include "battleScreen.h"
+#include "battle.h"
 
 //Game class, add as needed, avoid subtracting 
 class Game
@@ -45,10 +46,14 @@ class Game
     Inventory inventoryMenu;
     Stats stats;
     BattleScreen battleScreen;
+    Battle battle;
+
 
     protected:
     bool mIsDone;
     sf::Font mFont;
+
+    friend class Battle;
 };
 
 //Functions for misc stuff go here
