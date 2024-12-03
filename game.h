@@ -46,7 +46,7 @@ class Game
     Inventory inventoryMenu;
     Stats stats;
     BattleScreen battleScreen;
-    Battle battle;
+  //  Battle battle;
 
 
     protected:
