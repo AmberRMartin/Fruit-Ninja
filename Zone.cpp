@@ -29,55 +29,72 @@ Zone::Zone(int rectL, int rectT,std::string s, sf::Vector2f position, sf::Vector
     mObject.setPosition(position.x,position.y);
     mPosition = position;
     mObjColor = color;
-    mBtnState = normal;
+    mBtnState = norm;
     if (!mTreeTexture.loadFromFile("Sprites/map trees.png"))
     {
         std::cout<<"Error opening file\n";
         exit(1);
     }
     mTrees.setTexture(mTreeTexture);
-    sf::Vector2u imageSize=mTreeTexture.getSize();
+    imageSize=mTreeTexture.getSize();
     mTrees.setOrigin(imageSize.x/2, imageSize.y/2);
     mTrees.setScale(size.x/mTreeTexture.getSize().x,size.y/mTreeTexture.getSize().y);
     mTrees.setPosition(position.x,position.y);
+
+    if (!mFont.loadFromFile("Minecraftia-Regular.ttf"))
+    {
+        std::cout<<"Error opening file\n";
+        exit(1);
+    }
+    mText.setFont(mFont);
+    unsigned int fontSize = 30;
+    mText.setCharacterSize(fontSize);
+    //set label
+    mText.setString("YOU WIN!");
+    //set origin to the middle
+    mText.setOrigin(0, 0);
+    //set position at the middle of the button
+    mText.setPosition(300, 250);
+    mText.setFillColor(sf::Color::Green);
+
     Entity* temp;
     int arr[2] = {9,7};
-    temp = new Entity(0,0,"Level 1", {675,475},{50,50}, sf::Color::Blue, arr, true);
+    temp = new Entity(0,0,"Level 1", {575,475},{50,50}, sf::Color::Blue, arr, true);
     EntPtr.push_back(temp);
     mVectorSize++;
     arr[0] = 6;
     arr[1] = 7;
-    temp = new Entity(50,50,"Level 1", {675,325},{50,50}, sf::Color::Blue, arr, false);
+    temp = new Entity(50,50,"Level 1", {575,325},{50,50}, sf::Color::Blue, arr, false);
     EntPtr.push_back(temp);
     mVectorSize++;
     arr[0] = 1;
     arr[1] = 8;
-    temp = new Entity(100,50,"Level 1", {765,75},{50,50}, sf::Color::Blue, arr, false);
+    temp = new Entity(100,50,"Level 1", {625,75},{50,50}, sf::Color::Blue, arr, false);
     EntPtr.push_back(temp);
     mVectorSize++;
     arr[0] = 4;
     arr[1] = 5;
-    temp = new Entity(150,50,"Level 2", {495,225},{50,50}, sf::Color::Blue, arr, false);
+    temp = new Entity(150,50,"Level 2", {475,225},{50,50}, sf::Color::Blue, arr, false);
     EntPtr.push_back(temp);
     mVectorSize++;
     arr[0] = 6;
     arr[1] = 3;
-    temp = new Entity(0,50,"Level 1", {315,325},{50,50}, sf::Color::Blue, arr, false);
+    temp = new Entity(0,50,"Level 1", {375,325},{50,50}, sf::Color::Blue, arr, false);
     EntPtr.push_back(temp);
     mVectorSize++;
     arr[0] = 1;
     arr[1] = 4;
-    temp = new Entity(0,100,"Level 3", {405,75},{50,50}, sf::Color::Blue, arr, false);
+    temp = new Entity(0,50,"Level 3", {425,75},{50,50}, sf::Color::Blue, arr, false);
     EntPtr.push_back(temp);
     mVectorSize++;
     arr[0] = 8;
     arr[1] = 1;
-    temp = new Entity(0,100,"Level 3", {135,425},{50,50}, sf::Color::Blue, arr, false);
+    temp = new Entity(50,50,"Level 3", {275,425},{50,50}, sf::Color::Blue, arr, false);
     EntPtr.push_back(temp);
     mVectorSize++;
     arr[0] = 1;
     arr[1] = 1;
-    temp = new Entity(0,100,"Level 4", {135,75},{60,60}, sf::Color::Blue, arr, false);
+    temp = new Entity(0,50,"Level 4", {275,75},{50,50}, sf::Color::Blue, arr, false);
     EntPtr.push_back(temp);
     mVectorSize++;
 }
@@ -89,10 +106,16 @@ Zone::Zone(int rectL, int rectT,std::string s, sf::Vector2f position, sf::Vector
  * @param states 
  */
 void Zone::draw(sf::RenderTarget& target,sf::RenderStates states) const{
-    target.draw(mObject,states);
-    for(int i = 0; i < mVectorSize; i++)
-        target.draw(*EntPtr[i]);
-    target.draw(mTrees,states);
+    if(!mWin){
+        target.draw(mObject,states);
+        for(int i = 0; i < mVectorSize; i++)
+            target.draw(*EntPtr[i]);
+        target.draw(mTrees,states);
+    }
+    else{
+        target.clear();
+        target.draw(mText, states);
+    }
 }
 /**
  * @brief sets the text of the object
@@ -164,6 +187,8 @@ int Zone::validMove(int dir){
                 return 0;
             else if(Zone1[row-1][col] == 'E')
                 return 1;
+            else if(Zone1[row-1][col] == 'G')
+                return 2;
         }
     }
     else if(dir == 2){
@@ -220,13 +245,15 @@ bool Zone::update(sf::Event& e, sf::RenderWindow& window){
                             Entity* temp = EntPtr[i];
                             EntPtr[i] = EntPtr[mVectorSize - 1];
                             delete temp;
-                            EntPtr.push_back();
+                            EntPtr.pop_back();
                         }
                     }
                 }
                 return true;
             }
-           
+           else if(validMove(1) == 2){
+            mWin = true;
+           }
         }
         else if(e.key.code == sf::Keyboard::D){
             if(validMove(2) == 0){
@@ -243,7 +270,7 @@ bool Zone::update(sf::Event& e, sf::RenderWindow& window){
                             Entity* temp = EntPtr[i];
                             EntPtr[i] = EntPtr[mVectorSize - 1];
                             delete temp;
-                            EntPtr.push_back();
+                            EntPtr.pop_back();
                         }
                     }
                 }
@@ -266,7 +293,7 @@ bool Zone::update(sf::Event& e, sf::RenderWindow& window){
                             Entity* temp = EntPtr[i];
                             EntPtr[i] = EntPtr[mVectorSize - 1];
                             delete temp;
-                            EntPtr.push_back();
+                            EntPtr.pop_back();
                         }
                     }
                 }
@@ -288,7 +315,7 @@ bool Zone::update(sf::Event& e, sf::RenderWindow& window){
                             Entity* temp = EntPtr[i];
                             EntPtr[i] = EntPtr[mVectorSize - 1];
                             delete temp;
-                            EntPtr.push_back();
+                            EntPtr.pop_back();
                         }
                     }
                 }

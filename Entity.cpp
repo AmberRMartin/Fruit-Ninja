@@ -44,9 +44,10 @@ Entity::Entity(int rectL, int rectT,std::string s, sf::Vector2f position, sf::Ve
     mText.setPosition(position.x, position.y -(mObject.getGlobalBounds().height * 0.3));
     mTextNormal = sf::Color::Red;
     mText.setFillColor(mTextNormal);
-    mBtnState = normal;
+    mBtnState = norm;
     mArrayPos[0] = ArrayPos[0];
     mArrayPos[1] = ArrayPos[1];
+    mPC = PC;
 }
 
 /**

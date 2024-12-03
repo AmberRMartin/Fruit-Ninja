@@ -39,7 +39,7 @@ public:
 
     bool update(sf::Event& e, sf::RenderWindow& window);
     virtual void draw(sf::RenderTarget& target,sf::RenderStates states) const;
-
+    bool mWin = false;
 private:
     vector<Entity*> EntPtr;
     int mVectorSize;
