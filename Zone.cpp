@@ -16,7 +16,7 @@
  */
 Zone::Zone(int rectL, int rectT,std::string s, sf::Vector2f position, sf::Vector2f size, sf::Color color){
     mVectorSize =0;
-    if (!mTexture.loadFromFile("R.jpg"))
+    if (!mTexture.loadFromFile("Sprites/map background.png"))
     {
         std::cout<<"Error opening file\n";
         exit(1);
@@ -30,9 +30,54 @@ Zone::Zone(int rectL, int rectT,std::string s, sf::Vector2f position, sf::Vector
     mPosition = position;
     mObjColor = color;
     mBtnState = normal;
+    if (!mTreeTexture.loadFromFile("Sprites/map trees.png"))
+    {
+        std::cout<<"Error opening file\n";
+        exit(1);
+    }
+    mTrees.setTexture(mTreeTexture);
+    sf::Vector2u imageSize=mTreeTexture.getSize();
+    mTrees.setOrigin(imageSize.x/2, imageSize.y/2);
+    mTrees.setScale(size.x/mTreeTexture.getSize().x,size.y/mTreeTexture.getSize().y);
+    mTrees.setPosition(position.x,position.y);
     Entity* temp;
     int arr[2] = {9,7};
-    temp = new Entity(10,10,"Level 1", {300,250},{150,100}, sf::Color::Blue, arr, false);
+    temp = new Entity(0,0,"Level 1", {675,475},{50,50}, sf::Color::Blue, arr, true);
+    EntPtr.push_back(temp);
+    mVectorSize++;
+    arr[0] = 6;
+    arr[1] = 7;
+    temp = new Entity(50,50,"Level 1", {675,325},{50,50}, sf::Color::Blue, arr, false);
+    EntPtr.push_back(temp);
+    mVectorSize++;
+    arr[0] = 1;
+    arr[1] = 8;
+    temp = new Entity(100,50,"Level 1", {765,75},{50,50}, sf::Color::Blue, arr, false);
+    EntPtr.push_back(temp);
+    mVectorSize++;
+    arr[0] = 4;
+    arr[1] = 5;
+    temp = new Entity(150,50,"Level 2", {495,225},{50,50}, sf::Color::Blue, arr, false);
+    EntPtr.push_back(temp);
+    mVectorSize++;
+    arr[0] = 6;
+    arr[1] = 3;
+    temp = new Entity(0,50,"Level 1", {315,325},{50,50}, sf::Color::Blue, arr, false);
+    EntPtr.push_back(temp);
+    mVectorSize++;
+    arr[0] = 1;
+    arr[1] = 4;
+    temp = new Entity(0,100,"Level 3", {405,75},{50,50}, sf::Color::Blue, arr, false);
+    EntPtr.push_back(temp);
+    mVectorSize++;
+    arr[0] = 8;
+    arr[1] = 1;
+    temp = new Entity(0,100,"Level 3", {135,425},{50,50}, sf::Color::Blue, arr, false);
+    EntPtr.push_back(temp);
+    mVectorSize++;
+    arr[0] = 1;
+    arr[1] = 1;
+    temp = new Entity(0,100,"Level 4", {135,75},{60,60}, sf::Color::Blue, arr, false);
     EntPtr.push_back(temp);
     mVectorSize++;
 }
@@ -155,7 +200,7 @@ int Zone::validMove(int dir){
     }
     return -1;
 }
-void Zone::update(sf::Event& e, sf::RenderWindow& window){
+bool Zone::update(sf::Event& e, sf::RenderWindow& window){
     int row = EntPtr[0]->getArrayPos(0);
     int col = EntPtr[0]->getArrayPos(1);
     if(e.type == sf::Event::KeyPressed){
@@ -165,9 +210,20 @@ void Zone::update(sf::Event& e, sf::RenderWindow& window){
                 Zone1[row][col] = '-';
                 Zone1[row-1][col] = 'C'; 
                 EntPtr[0]->setArrayPos(row-1,col);
+                return false;
             }
             else if(validMove(1) == 1){
-                //enter battle
+                for(int i = 1;i < mVectorSize; i++){
+                    if(EntPtr[i]->mArrayPos[0] == row - 1){
+                        if(EntPtr[i]->mArrayPos[1] == col){
+                            Entity* temp = EntPtr[i];
+                            EntPtr[i] = EntPtr[mVectorSize - 1];
+                            delete temp;
+                            EntPtr.push_back();
+                        }
+                    }
+                }
+                return true;
             }
            
         }
@@ -177,9 +233,20 @@ void Zone::update(sf::Event& e, sf::RenderWindow& window){
                 Zone1[row][col] = '-';
                 Zone1[row][col+1] = 'C';
                 EntPtr[0]->setArrayPos(row,col+1); 
+                return false;
             }
-            else if(validMove(1) == 1){
-                //enter battle
+            else if(validMove(2) == 1){
+                for(int i = 1;i < mVectorSize; i++){
+                    if(EntPtr[i]->mArrayPos[0] == row){
+                        if(EntPtr[i]->mArrayPos[1] == col+1){
+                            Entity* temp = EntPtr[i];
+                            EntPtr[i] = EntPtr[mVectorSize - 1];
+                            delete temp;
+                            EntPtr.push_back();
+                        }
+                    }
+                }
+                return true;
             }
 
         }
@@ -189,9 +256,20 @@ void Zone::update(sf::Event& e, sf::RenderWindow& window){
                 Zone1[row][col] = '-';
                 Zone1[row+1][col] = 'C'; 
                 EntPtr[0]->setArrayPos(row+1,col);
+                return false;
             }
-            else if(validMove(1) == 1){
-                //enter battle
+            else if(validMove(3) == 1){
+                for(int i = 1;i < mVectorSize; i++){
+                    if(EntPtr[i]->mArrayPos[0] == row + 1){
+                        if(EntPtr[i]->mArrayPos[1] == col){
+                            Entity* temp = EntPtr[i];
+                            EntPtr[i] = EntPtr[mVectorSize - 1];
+                            delete temp;
+                            EntPtr.push_back();
+                        }
+                    }
+                }
+                return true;
             }
         }
         else if(e.key.code == sf::Keyboard::A){
@@ -200,10 +278,22 @@ void Zone::update(sf::Event& e, sf::RenderWindow& window){
                 Zone1[row][col] = '-';
                 Zone1[row][col-1] = 'C';
                 EntPtr[0]->setArrayPos(row,col-1);
+                return false;
             }
-            else if(validMove(1) == 1){
-                //enter battle
+            else if(validMove(4) == 1){
+                for(int i = 1;i < mVectorSize; i++){
+                    if(EntPtr[i]->mArrayPos[0] == row){
+                        if(EntPtr[i]->mArrayPos[1] == col-1){
+                            Entity* temp = EntPtr[i];
+                            EntPtr[i] = EntPtr[mVectorSize - 1];
+                            delete temp;
+                            EntPtr.push_back();
+                        }
+                    }
+                }
+                return true;
             }
         }
     }
+    return false;
 }

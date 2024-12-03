@@ -37,7 +37,7 @@ public:
     sf::Vector2f getDimensions(){return sf::Vector2f(mObject.getGlobalBounds().width, mObject.getGlobalBounds().height);};
     sf::Uint32 getState(){return mBtnState;};
 
-    void update(sf::Event& e, sf::RenderWindow& window);
+    bool update(sf::Event& e, sf::RenderWindow& window);
     virtual void draw(sf::RenderTarget& target,sf::RenderStates states) const;
 
 private:
@@ -45,20 +45,21 @@ private:
     int mVectorSize;
     sf::Color mObjColor;
     sf::Uint32 mBtnState;
-    
+    sf::Sprite mTrees;
+    sf::Texture mTreeTexture;
     //text
     
     sf::Color mTextNormal;
-    char Zone1[10][10] =            {{'X', 'G', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X'},      
-                                   {'X', '-', '-', '-', '-', '-', '-', '-', '-', 'X'},      
-                                   {'X', '-', 'X', 'X', 'X', 'X', '-', 'X', '-', 'X'},      
-                                   {'X', '-', 'X', 'X', 'X', '-', '-', 'X', '-', 'X'},      
-                                   {'X', '-', 'X', 'X', 'X', '-', '-', 'X', '-', 'X'},      
-                                   {'X', '-', 'X', 'X', 'X', '-', '-', '-', '-', 'X'},      
-                                   {'X', '-', '-', '-', '-', 'X', 'X', '-', '-', 'X'},      
-                                   {'X', '-', 'X', '-', '-', 'X', 'X', '-', '-', 'X'},      
-                                   {'X', '-', 'X', '-', '-', '-', '-', '-', '-', 'X'},      
-                                   {'X', 'X', 'X', 'X', 'X', 'X', 'X', 'S', 'X', 'X'}};      
+    char Zone1[10][10] =           {{'X', 'G', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X'},      
+                                    {'X', 'E', '-', '-', 'E', '-', '-', '-', 'E', 'X'},      
+                                    {'X', '-', 'X', 'X', 'X', 'X', '-', 'X', '-', 'X'},      
+                                    {'X', '-', 'X', 'X', 'X', '-', '-', 'X', '-', 'X'},      
+                                    {'X', '-', 'X', 'X', 'X', 'E', '-', 'X', '-', 'X'},      
+                                    {'X', '-', 'X', 'X', 'X', '-', '-', '-', '-', 'X'},      
+                                    {'X', '-', '-', 'E', '-', 'X', 'X', 'E', '-', 'X'},      
+                                    {'X', '-', 'X', '-', '-', 'X', 'X', '-', '-', 'X'},      
+                                    {'X', 'E', 'X', '-', '-', '-', '-', '-', '-', 'X'},      
+                                    {'X', 'X', 'X', 'X', 'X', 'X', 'X', 'C', 'X', 'X'}};      
                                    
 
                                    

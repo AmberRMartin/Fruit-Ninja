@@ -28,8 +28,6 @@ Entity::Entity(int rectL, int rectT,std::string s, sf::Vector2f position, sf::Ve
     mObject.setPosition(position.x,position.y);
     mPosition = position;
     mObjColor = color;
-    mObject.setColor(color);
-    //TODO: finish
     if (!mFont.loadFromFile("Minecraftia-Regular.ttf"))
     {
         std::cout<<"Error opening file\n";

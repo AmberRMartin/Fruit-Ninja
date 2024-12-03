@@ -13,6 +13,7 @@
 // // This the main.cpp file
 // // Add #includes as you see fit
 #include "game.h"
+#include "Zone.h"
 #include <SFML/Graphics.hpp>
 
 int main()
@@ -58,7 +59,7 @@ int main()
 //Map screen
             else if (game.pauseMenu.isPaused == false && game.inventoryMenu.isOpen == false && game.inBattle == false)
             {
-
+                window.draw(Zone1);
 /*
 Note for Matthew: This displays both pause and inventory button on screen.
 This is the only section where the player is supposed to be able to move around
@@ -69,6 +70,7 @@ You may delete this message whenever you please
                 game.pauseMenu.update(event, window);
                 window.draw(game.inventoryMenu);
                 game.inventoryMenu.update(event, window);
+                game.inBattle = Zone1.update(event,window);
 
 //TEMPORARY: for nick to activate battle mode 
 window.draw(temp);
